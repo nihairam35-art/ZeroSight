@@ -1,0 +1,2694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroSight — Next-Gen Zero-Day Threat Detection</title>
+  <meta name="description" content="See the attack no one has seen yet. AI-powered zero-day threat detection and SOC monitoring platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-card-style="white">
+  <!-- APP ROOT -->
+  <div id="app" class="app-root">
+
+    <!-- ==============================================
+         1. WELCOME / INTRO SCREEN (Page 1)
+         ============================================== -->
+    <section id="view-welcome" class="view-screen view-welcome active">
+      <div class="welcome-container">
+        <div class="welcome-content">
+          <h1 class="welcome-title">ZeroSight</h1>
+          <p class="welcome-tagline">See the attack no one has seen yet.</p>
+
+          <div class="welcome-actions">
+            <button id="btn-welcome-next" class="btn btn-primary btn-lg" type="button">
+              <span>Next</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="welcome-footer-info">
+            <span class="status-indicator"></span>
+            <span>Real-time Zero-Day Defense Engine • v2.6 Online</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==============================================
+         2. LOGIN SCREEN (Page 2)
+         Target height: 460-500px, spacious, centered
+         White card (#FFFFFF), #0C0C0C text, #FF6F32 accent
+         ============================================== -->
+    <section id="view-login" class="view-screen view-login">
+      <div class="login-page-backdrop" aria-hidden="true"></div>
+
+      <!-- Centered container -->
+      <div class="login-wrapper">
+        <div class="login-card" id="loginCard">
+          <div class="login-header">
+            <h2 class="login-title">Login</h2>
+            <p class="login-subtitle">Welcome back</p>
+          </div>
+
+          <form id="form-login" class="login-form" novalidate>
+            <!-- Username Input -->
+            <div class="form-group">
+              <label for="input-username" class="sr-only">Username or Email</label>
+              <div class="input-container">
+                <input
+                  type="text"
+                  id="input-username"
+                  class="form-input"
+                  placeholder="Username"
+                  value="Alex Mercer"
+                  required
+                  autocomplete="username"
+                />
+                <span class="input-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="input-password" class="sr-only">Password</label>
+              <div class="input-container">
+                <input
+                  type="password"
+                  id="input-password"
+                  class="form-input"
+                  placeholder="Password"
+                  value="••••••••••••"
+                  required
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  id="btn-toggle-password"
+                  class="input-icon-btn"
+                  aria-label="Toggle password visibility"
+                >
+                  <svg id="icon-eye" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg id="icon-eye-off" class="hidden" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Login As Role Selection -->
+            <div class="form-group role-selection-group">
+              <span class="role-selection-label">Login as</span>
+              <div class="role-options" role="radiogroup" aria-label="Select login role">
+                <button
+                  type="button"
+                  class="role-option-btn active"
+                  data-role="Security Analyst"
+                  role="radio"
+                  aria-checked="true"
+                >
+                  <span class="role-text">Security<br>Analyst</span>
+                </button>
+                <button
+                  type="button"
+                  class="role-option-btn"
+                  data-role="Security Manager"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  <span class="role-text">Security<br>Manager</span>
+                </button>
+                <button
+                  type="button"
+                  class="role-option-btn"
+                  data-role="Admin"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  <span class="role-text">Admin</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block">
+              <span>Continue</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <div class="login-footer-security">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Encrypted SOC Session • 256-bit TLS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==============================================
+         AUTHENTICATED APPLICATION SHELL
+         Includes Persistent Sidebar, Topbar, and Views
+         ============================================== -->
+    <div id="app-shell" class="app-shell hidden">
+
+      <!-- ================= SIDEBAR ================= -->
+      <aside id="app-sidebar" class="app-sidebar">
+        <!-- Brand Header -->
+        <div class="sidebar-brand">
+          <div class="brand-logo-mark">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+              <line x1="12" y1="2" x2="12" y2="6"/>
+              <line x1="12" y1="18" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="6" y2="12"/>
+              <line x1="18" y1="12" x2="22" y2="12"/>
+            </svg>
+          </div>
+          <div class="brand-text-block">
+            <span class="brand-name">ZeroSight</span>
+            <span class="brand-tag">Threat detection</span>
+          </div>
+          <!-- Mobile sidebar close -->
+          <button id="btn-sidebar-close" class="btn-sidebar-close" aria-label="Close sidebar">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="sidebar-search">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="sidebar-search-input" placeholder="Search alerts" aria-label="Search alerts">
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+          <div class="nav-section-label">MAIN MENU</div>
+          <ul class="nav-list">
+            <li>
+              <button class="nav-item active" data-nav="dashboard" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span class="nav-label">Dashboard</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item" data-nav="alerts" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span class="nav-label">Alerts</span>
+                <span class="nav-badge">4</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item" data-nav="simulator" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span class="nav-label">Simulator</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item" data-nav="reports" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span class="nav-label">Reports</span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="nav-section-label">SYSTEM</div>
+          <ul class="nav-list">
+            <li>
+              <button class="nav-item" data-nav="settings" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span class="nav-label">Settings</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item" data-nav="support" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span class="nav-label">Support</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Simulation Callout Box -->
+        <div class="sidebar-callout">
+          <h4 class="callout-title">Run a simulation</h4>
+          <p class="callout-desc">Test the detector against an attack it has never seen.</p>
+          <button id="btn-sidebar-simulator" class="btn btn-primary btn-sm btn-block" type="button">
+            Open Simulator
+          </button>
+        </div>
+
+        <!-- User Profile Card -->
+        <div class="sidebar-user-profile">
+          <div class="user-avatar" id="user-avatar">YN</div>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">[Your name]</span>
+            <span class="user-role" id="user-display-role">Security Analyst</span>
+          </div>
+          <button id="btn-logout" class="btn-logout" title="Sign out" aria-label="Sign out">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Sidebar Backdrop on mobile -->
+      <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+      <!-- ================= APPLICATION WORKSPACE ================= -->
+      <div class="app-workspace">
+
+        <!-- STATIONARY PERSISTENT HEADER (Stays fixed at top while page views switch) -->
+        <header class="app-stationary-header">
+          <div class="header-left">
+            <button id="btn-mobile-menu" class="btn-mobile-menu" aria-label="Open navigation menu">
+              <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+            <div class="app-breadcrumb-trail">
+              <span class="crumb-brand">ZeroSight</span>
+              <span class="crumb-sep">/</span>
+              <span id="topbar-active-page" class="crumb-active-page">Dashboard</span>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <!-- Date badge -->
+            <div class="date-badge">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Nov 9, 2026</span>
+            </div>
+
+            <!-- Notification badge -->
+            <button type="button" class="btn-notification-badge" id="btn-topbar-alerts" aria-label="3 critical alerts">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="pill-count">3</span>
+            </button>
+
+            <!-- Card Surface Style Switcher -->
+            <div class="theme-mode-switcher" title="Toggle card visual treatment">
+              <button type="button" id="btn-toggle-card-style" class="btn-card-toggle" aria-label="Toggle card style">
+                <span class="toggle-indicator"></span>
+                <span class="toggle-label" id="toggle-card-label">30% White Cards</span>
+              </button>
+            </div>
+
+            <!-- Active User Quick Badge -->
+            <div class="topbar-user-badge">
+              <div class="topbar-avatar" id="topbar-user-avatar">AM</div>
+              <span class="topbar-user-name dyn-user-name">Alex Mercer</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- ================= MAIN SCROLLABLE CONTENT STAGE ================= -->
+        <main class="app-main-content" id="app-main-content">
+
+          <!-- ==============================================
+               PAGE 1: DASHBOARD VIEW
+               ============================================== -->
+          <section id="content-dashboard" class="content-view active">
+            <!-- Top greeting bar -->
+            <header class="dashboard-header">
+              <div class="header-titles">
+                <h1 class="page-greeting">Good morning, <span class="dyn-user-name">[Your name]</span></h1>
+                <p class="page-subtitle">Here is what is happening on your network today.</p>
+              </div>
+              <div class="dashboard-live-status">
+                <span class="live-dot"></span>
+                <span>Real-Time Ingress Stream Active</span>
+              </div>
+            </header>
+
+          <!-- 4 Metric Cards Row -->
+          <div class="metrics-grid">
+            <!-- 1. Total alerts -->
+            <div class="card metric-card">
+              <div class="metric-top">
+                <span class="metric-label">Total alerts</span>
+                <div class="metric-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value">128</div>
+              <div class="metric-trend trend-positive">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <span>+12.5% from yesterday</span>
+              </div>
+              <!-- Mini sparkline -->
+              <div class="metric-sparkline">
+                <svg viewBox="0 0 100 20" class="sparkline-svg" preserveAspectRatio="none">
+                  <path d="M0,16 Q20,12 40,15 T80,8 T100,4" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. Critical alerts -->
+            <div class="card metric-card">
+              <div class="metric-top">
+                <span class="metric-label">Critical alerts</span>
+                <div class="metric-icon-badge highlight-orange">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value highlight-value">9</div>
+              <div class="metric-trend trend-positive">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <span>+4.7% from yesterday</span>
+              </div>
+              <div class="metric-sparkline">
+                <svg viewBox="0 0 100 20" class="sparkline-svg sparkline-orange" preserveAspectRatio="none">
+                  <path d="M0,8 Q25,18 50,10 T80,14 T100,16" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 3. Detection rate -->
+            <div class="card metric-card">
+              <div class="metric-top">
+                <span class="metric-label">Detection rate</span>
+                <div class="metric-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value">87%</div>
+              <div class="metric-trend trend-positive">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <span>+2.1% from yesterday</span>
+              </div>
+              <div class="metric-sparkline">
+                <svg viewBox="0 0 100 20" class="sparkline-svg" preserveAspectRatio="none">
+                  <path d="M0,18 Q30,14 60,8 T90,6 T100,3" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 4. False positives -->
+            <div class="card metric-card">
+              <div class="metric-top">
+                <span class="metric-label">False positives</span>
+                <div class="metric-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="metric-value">14</div>
+              <div class="metric-trend trend-positive">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <span>-8.0% from yesterday</span>
+              </div>
+              <div class="metric-sparkline">
+                <svg viewBox="0 0 100 20" class="sparkline-svg" preserveAspectRatio="none">
+                  <path d="M0,6 Q30,8 60,14 T80,16 T100,18" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Row: Alerts Over Time Bar Chart + Risk Breakdown Donut -->
+          <div class="charts-row">
+            <!-- Alerts Over Time -->
+            <div class="card chart-card alerts-over-time-card">
+              <div class="card-header">
+                <div class="card-header-left">
+                  <h3 class="card-title">Alerts over time</h3>
+                  <div class="sub-stat">
+                    <span class="sub-stat-label">Total alerts</span>
+                    <span class="sub-stat-num" id="dashboard-total-alerts">128</span>
+                  </div>
+                </div>
+                <div class="card-header-right">
+                  <div class="custom-select-wrap">
+                    <select class="filter-dropdown" id="select-chart-timerange" aria-label="Timeframe">
+                      <option value="today" selected>Today</option>
+                      <option value="yesterday">Yesterday</option>
+                      <option value="7d">Last 7 days</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bar Chart Visual -->
+              <div class="bar-chart-container" id="barChartContainer">
+                <!-- SVG Bars with active tooltip on 11 -->
+                <div class="chart-bars-wrap">
+                  <div class="chart-tooltip-floating" id="chartTooltip">
+                    10:00 | 24 alerts
+                  </div>
+                  <div class="chart-bars-flex">
+                    <div class="bar-col" data-hour="09" data-val="12"><div class="bar-fill" style="height: 38%;"></div><span class="bar-label">09</span></div>
+                    <div class="bar-col" data-hour="10" data-val="18"><div class="bar-fill" style="height: 56%;"></div><span class="bar-label">10</span></div>
+                    <div class="bar-col active-bar" data-hour="11" data-val="24"><div class="bar-fill" style="height: 88%;"></div><span class="bar-label">11</span></div>
+                    <div class="bar-col" data-hour="12" data-val="14"><div class="bar-fill" style="height: 44%;"></div><span class="bar-label">12</span></div>
+                    <div class="bar-col" data-hour="13" data-val="8"><div class="bar-fill" style="height: 25%;"></div><span class="bar-label">13</span></div>
+                    <div class="bar-col" data-hour="14" data-val="16"><div class="bar-fill" style="height: 50%;"></div><span class="bar-label">14</span></div>
+                    <div class="bar-col" data-hour="15" data-val="22"><div class="bar-fill" style="height: 69%;"></div><span class="bar-label">15</span></div>
+                    <div class="bar-col" data-hour="16" data-val="10"><div class="bar-fill" style="height: 31%;"></div><span class="bar-label">16</span></div>
+                    <div class="bar-col" data-hour="17" data-val="7"><div class="bar-fill" style="height: 22%;"></div><span class="bar-label">17</span></div>
+                    <div class="bar-col" data-hour="18" data-val="11"><div class="bar-fill" style="height: 34%;"></div><span class="bar-label">18</span></div>
+                    <div class="bar-col" data-hour="19" data-val="15"><div class="bar-fill" style="height: 47%;"></div><span class="bar-label">19</span></div>
+                    <div class="bar-col" data-hour="20" data-val="9"><div class="bar-fill" style="height: 28%;"></div><span class="bar-label">20</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk Breakdown Donut Card -->
+            <div class="card chart-card risk-breakdown-card">
+              <div class="card-header">
+                <h3 class="card-title">Risk breakdown</h3>
+                <div class="custom-select-wrap">
+                  <select class="filter-dropdown" id="select-risk-timerange" aria-label="Risk timeframe">
+                    <option value="today" selected>Today</option>
+                    <option value="7d">Last 7 days</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="donut-chart-content">
+                <!-- SVG Donut Chart -->
+                <div class="donut-visual-container">
+                  <svg class="donut-svg" viewBox="0 0 160 160">
+                    <!-- Donut Track -->
+                    <circle cx="80" cy="80" r="62" fill="none" stroke="rgba(12,12,12,0.06)" stroke-width="16" />
+                    <!-- Low segment: 34.4% -->
+                    <circle id="donut-seg-low" cx="80" cy="80" r="62" fill="none" stroke="#666666" stroke-width="16"
+                      stroke-dasharray="134 390" stroke-dashoffset="0" />
+                    <!-- Medium segment: 39.8% -->
+                    <circle id="donut-seg-med" cx="80" cy="80" r="62" fill="none" stroke="#999999" stroke-width="16"
+                      stroke-dasharray="155 390" stroke-dashoffset="-134" />
+                    <!-- High segment: 18.8% -->
+                    <circle id="donut-seg-high" cx="80" cy="80" r="62" fill="none" stroke="#D1D5DB" stroke-width="16"
+                      stroke-dasharray="73 390" stroke-dashoffset="-289" />
+                    <!-- Critical segment: 7.0% (Signature Orange) -->
+                    <circle id="donut-seg-crit" cx="80" cy="80" r="62" fill="none" stroke="#FF6F32" stroke-width="16"
+                      stroke-dasharray="28 390" stroke-dashoffset="-362" />
+                  </svg>
+                  <div class="donut-center-stat">
+                    <span class="center-number" id="donut-center-total-alerts">128</span>
+                    <span class="center-sub">Total alerts</span>
+                  </div>
+                </div>
+
+                <!-- Donut Legend -->
+                <div class="donut-legend">
+                  <div class="legend-row">
+                    <div class="legend-left">
+                      <span class="legend-dot color-critical"></span>
+                      <span class="legend-name">Critical</span>
+                    </div>
+                    <div class="legend-right">
+                      <span class="legend-count" id="donut-crit-cnt">9</span>
+                      <span class="legend-pct text-orange" id="donut-crit-pct">7.0%</span>
+                    </div>
+                  </div>
+                  <div class="legend-row">
+                    <div class="legend-left">
+                      <span class="legend-dot color-high"></span>
+                      <span class="legend-name">High</span>
+                    </div>
+                    <div class="legend-right">
+                      <span class="legend-count" id="donut-high-cnt">24</span>
+                      <span class="legend-pct" id="donut-high-pct">18.8%</span>
+                    </div>
+                  </div>
+                  <div class="legend-row">
+                    <div class="legend-left">
+                      <span class="legend-dot color-medium"></span>
+                      <span class="legend-name">Medium</span>
+                    </div>
+                    <div class="legend-right">
+                      <span class="legend-count" id="donut-med-cnt">51</span>
+                      <span class="legend-pct" id="donut-med-pct">39.8%</span>
+                    </div>
+                  </div>
+                  <div class="legend-row">
+                    <div class="legend-left">
+                      <span class="legend-dot color-low"></span>
+                      <span class="legend-name">Low</span>
+                    </div>
+                    <div class="legend-right">
+                      <span class="legend-count" id="donut-low-cnt">44</span>
+                      <span class="legend-pct" id="donut-low-pct">34.4%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom 3-Column Row: Recent Alerts | Zero-Day Test | Detection Quality -->
+          <div class="tri-grid-row">
+            <!-- 1. Recent Alerts Card -->
+            <div class="card recent-alerts-card">
+              <div class="card-header">
+                <h3 class="card-title">Recent alerts</h3>
+                <button type="button" class="btn-card-link" id="link-view-all-alerts">View all</button>
+              </div>
+
+              <div class="recent-alerts-list">
+                <!-- Alert 1 (Critical) -->
+                <div class="alert-list-item" data-alert-id="1">
+                  <div class="alert-item-left">
+                    <div class="alert-badge-icon badge-critical">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                      </svg>
+                    </div>
+                    <div class="alert-item-text">
+                      <div class="alert-title-row">
+                        <span class="alert-type">DDoS</span>
+                        <span class="alert-from">from 192.168.1.45</span>
+                      </div>
+                      <span class="alert-timestamp">Nov 9, 09:01</span>
+                    </div>
+                  </div>
+                  <div class="alert-item-right">
+                    <span class="alert-score">92</span>
+                    <span class="severity-tag tag-critical">Critical</span>
+                  </div>
+                </div>
+
+                <!-- Alert 2 (High) -->
+                <div class="alert-list-item" data-alert-id="2">
+                  <div class="alert-item-left">
+                    <div class="alert-badge-icon badge-high">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                      </svg>
+                    </div>
+                    <div class="alert-item-text">
+                      <div class="alert-title-row">
+                        <span class="alert-type">WebAttack</span>
+                        <span class="alert-from">from 172.16.4.9</span>
+                      </div>
+                      <span class="alert-timestamp">Nov 9, 09:05</span>
+                    </div>
+                  </div>
+                  <div class="alert-item-right">
+                    <span class="alert-score">81</span>
+                    <span class="severity-tag tag-high">High</span>
+                  </div>
+                </div>
+
+                <!-- Alert 3 (Medium) -->
+                <div class="alert-list-item" data-alert-id="3">
+                  <div class="alert-item-left">
+                    <div class="alert-badge-icon badge-medium">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                      </svg>
+                    </div>
+                    <div class="alert-item-text">
+                      <div class="alert-title-row">
+                        <span class="alert-type">PortScan</span>
+                        <span class="alert-from">from 10.0.0.17</span>
+                      </div>
+                      <span class="alert-timestamp">Nov 9, 09:03</span>
+                    </div>
+                  </div>
+                  <div class="alert-item-right">
+                    <span class="alert-score">64</span>
+                    <span class="severity-tag tag-medium">Medium</span>
+                  </div>
+                </div>
+
+                <!-- Alert 4 (Low) -->
+                <div class="alert-list-item" data-alert-id="4">
+                  <div class="alert-item-left">
+                    <div class="alert-badge-icon badge-low">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                    </div>
+                    <div class="alert-item-text">
+                      <div class="alert-title-row">
+                        <span class="alert-type">Benign</span>
+                        <span class="alert-from">from 192.168.1.60</span>
+                      </div>
+                      <span class="alert-timestamp">Nov 9, 09:07</span>
+                    </div>
+                  </div>
+                  <div class="alert-item-right">
+                    <span class="alert-score">47</span>
+                    <span class="severity-tag tag-low">Low</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Zero-Day Test Card -->
+            <div class="card zero-day-test-card">
+              <div class="card-header">
+                <h3 class="card-title">Zero-day test</h3>
+                <span class="tag-pill">DDoS</span>
+              </div>
+              <div class="zero-day-content">
+                <div class="zero-day-stat">82%</div>
+                <p class="zero-day-desc">of an attack the model never saw was caught</p>
+                <!-- Trend Line Graphic -->
+                <div class="zero-day-curve">
+                  <svg viewBox="0 0 260 70" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="orangeGlow" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#FF6F32" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="#FF6F32" stop-opacity="0.0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,60 C40,55 70,40 120,38 C170,36 210,18 260,10 L260,70 L0,70 Z" fill="url(#orangeGlow)"/>
+                    <path d="M0,60 C40,55 70,40 120,38 C170,36 210,18 260,10" fill="none" stroke="#FF6F32" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Detection Quality Card -->
+            <div class="card detection-quality-card">
+              <div class="card-header">
+                <h3 class="card-title">Detection quality</h3>
+                <button type="button" class="btn-card-link" id="link-view-all-quality">View all</button>
+              </div>
+
+              <div class="quality-bars-list">
+                <!-- Precision -->
+                <div class="quality-bar-item">
+                  <div class="quality-label-row">
+                    <span class="quality-name">Precision</span>
+                    <span class="quality-pct">91%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width: 91%;"></div>
+                  </div>
+                </div>
+
+                <!-- Recall -->
+                <div class="quality-bar-item">
+                  <div class="quality-label-row">
+                    <span class="quality-name">Recall</span>
+                    <span class="quality-pct">87%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width: 87%;"></div>
+                  </div>
+                </div>
+
+                <!-- Zero-day recall -->
+                <div class="quality-bar-item highlight-quality">
+                  <div class="quality-label-row">
+                    <span class="quality-name">Zero-day recall</span>
+                    <span class="quality-pct text-orange">82%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill fill-orange" style="width: 82%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Security Insights Banner -->
+          <div class="card security-insights-banner">
+            <div class="insights-left">
+              <div class="insights-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <circle cx="12" cy="11" r="3"/>
+                </svg>
+              </div>
+              <div class="insights-text">
+                <h4 class="insights-title">Security insights</h4>
+                <p class="insights-body">The model caught 82% of an attack it never saw. Review the 9 critical alerts first.</p>
+              </div>
+            </div>
+            <div class="insights-right">
+              <button type="button" class="btn btn-primary" id="btn-insights-report">
+                View detailed report
+              </button>
+              <span class="insights-meta">Generated on Nov 9, 2026</span>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==============================================
+             PAGE: THREAT ALERTS QUEUE VIEW
+             ============================================== -->
+        <section id="content-alerts" class="content-view">
+          <header class="section-header">
+            <div>
+              <h1 class="page-title">Threat Alerts Queue</h1>
+              <p class="page-subtitle">Real-time anomaly alerts prioritized by composite neural risk score</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-outline" id="btn-refresh-alerts" type="button">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>Refresh Stream</span>
+              </button>
+            </div>
+          </header>
+
+          <!-- Severity Quick-Filter Pills, Dropdowns & Live Search -->
+          <div class="alerts-filter-bar">
+            <div class="alerts-filter-pills">
+              <button type="button" class="filter-pill active-pill" data-severity="all">All Alerts (<span id="pill-cnt-all">10</span>)</button>
+              <button type="button" class="filter-pill" data-severity="critical">Critical (<span id="pill-cnt-critical">3</span>)</button>
+              <button type="button" class="filter-pill" data-severity="high">High (<span id="pill-cnt-high">3</span>)</button>
+              <button type="button" class="filter-pill" data-severity="medium">Medium (<span id="pill-cnt-medium">2</span>)</button>
+              <button type="button" class="filter-pill" data-severity="low">Low (<span id="pill-cnt-low">2</span>)</button>
+            </div>
+            <div class="alerts-dropdown-controls">
+              <div class="custom-select-wrap">
+                <select id="select-category-filter" class="table-select-filter" aria-label="Filter by threat category">
+                  <option value="all" selected>All Threat Vectors</option>
+                  <option value="DDoS">DDoS Flood</option>
+                  <option value="WebAttack">WebAttack SQLi / XSS</option>
+                  <option value="PortScan">PortScan Sweep</option>
+                  <option value="Infiltration">Infiltration</option>
+                  <option value="Botnet">Botnet C2</option>
+                  <option value="Benign">Benign Flow</option>
+                </select>
+              </div>
+              <div class="custom-select-wrap">
+                <select id="select-status-filter" class="table-select-filter" aria-label="Filter by status">
+                  <option value="all" selected>All Mitigation Statuses</option>
+                  <option value="Blocked & Quarantined">Blocked & Quarantined</option>
+                  <option value="WAF Intercept">WAF Intercept</option>
+                  <option value="Rate Limited">Rate Limited</option>
+                  <option value="Baseline Anomaly">Baseline Anomaly</option>
+                </select>
+              </div>
+              <div class="custom-select-wrap">
+                <select id="select-sort-alerts" class="table-select-filter" aria-label="Sort alerts">
+                  <option value="risk-desc" selected>Sort: Risk Score (High → Low)</option>
+                  <option value="risk-asc">Sort: Risk Score (Low → High)</option>
+                  <option value="time-desc">Sort: Detection Time (Newest)</option>
+                  <option value="time-asc">Sort: Detection Time (Oldest)</option>
+                  <option value="severity">Sort: Severity Tier</option>
+                </select>
+              </div>
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="input-alerts-filter" placeholder="Search IP, vector or ID..." class="table-search-input">
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerts Queue Table Card (Large White Card) -->
+          <div class="card alerts-queue-card">
+            <div class="table-responsive">
+              <table class="report-table" id="table-alerts-queue">
+                <thead>
+                  <tr>
+                    <th>Alert ID</th>
+                    <th>Severity</th>
+                    <th>Threat Vector</th>
+                    <th>Source IP</th>
+                    <th>Risk Score</th>
+                    <th>Detection Time</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="alerts-queue-tbody">
+                  <!-- Dynamically populated rows from app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==============================================
+             PAGE 2: ALERT DETAILS VIEW
+             ============================================== -->
+        <section id="content-alert-details" class="content-view">
+          <!-- Alert Details Header & Breadcrumb -->
+          <div class="alert-details-nav-header">
+            <div class="breadcrumb-group">
+              <span class="breadcrumb-item" id="crumb-alerts-root">Alerts</span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-current">Alert 1</span>
+            </div>
+            <button type="button" class="btn btn-outline" id="btn-back-to-dashboard">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back to alerts</span>
+            </button>
+          </div>
+
+          <!-- Alert Heading Title & Badge -->
+          <div class="alert-title-bar">
+            <h1 class="alert-details-title">Alert 1</h1>
+            <span class="severity-tag tag-critical tag-lg">Critical</span>
+          </div>
+
+          <!-- 4 Stat Cards Row -->
+          <div class="alert-stats-grid">
+            <!-- Risk score -->
+            <div class="card alert-stat-card">
+              <div class="stat-card-label">Risk score</div>
+              <div class="stat-card-bottom">
+                <div class="stat-card-value text-orange">92 <span class="stat-denominator">/ 100</span></div>
+                <div class="stat-icon-wrap highlight-orange">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Source IP -->
+            <div class="card alert-stat-card">
+              <div class="stat-card-label">Source IP</div>
+              <div class="stat-card-bottom">
+                <div class="stat-card-value code-font">192.168.1.45</div>
+                <div class="stat-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Time -->
+            <div class="card alert-stat-card">
+              <div class="stat-card-label">Time</div>
+              <div class="stat-card-bottom">
+                <div class="stat-card-value code-font">09:01:12</div>
+                <div class="stat-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Attack label -->
+            <div class="card alert-stat-card">
+              <div class="stat-card-label">Attack label</div>
+              <div class="stat-card-bottom">
+                <div class="stat-card-value text-orange">DDoS</div>
+                <div class="stat-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Column Breakdown: Signals vs Recommended Next Steps -->
+          <div class="alert-split-grid">
+            <!-- Left Column: Why was this flagged? -->
+            <div class="card alert-panel-card">
+              <h3 class="panel-card-title">Why was this flagged?</h3>
+              <p class="panel-card-subtitle">Signals that pushed the score up</p>
+
+              <div class="signals-list" id="alert-signals-container">
+                <!-- Dynamically populated from alert.signals -->
+                <div class="signal-item">
+                  <div class="signal-info">
+                    <span class="signal-name">Packet rate</span>
+                    <span class="signal-desc text-orange">40 times above normal</span>
+                  </div>
+                  <div class="signal-bar-track">
+                    <div class="signal-bar-fill fill-orange" style="width: 95%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: What to do next -->
+            <div class="card alert-panel-card">
+              <h3 class="panel-card-title">What to do next</h3>
+              <p class="panel-card-subtitle">Recommended SOC mitigation protocol</p>
+
+              <ol class="next-steps-list" id="alert-steps-container">
+                <!-- Dynamically populated from alert.steps -->
+                <li class="step-item">
+                  <span class="step-num">1</span>
+                  <div class="step-content">
+                    <span class="step-text">Block 192.168.1.45 at the firewall.</span>
+                    <button type="button" class="btn-step-action" data-action="block">Execute</button>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Chronological Incident Timeline -->
+          <div class="card incident-timeline-card">
+            <div class="card-header">
+              <div>
+                <h3 class="panel-card-title">Chronological Incident Timeline</h3>
+                <p class="panel-card-subtitle">End-to-end anomaly propagation and automated containment telemetry</p>
+              </div>
+              <span class="severity-tag tag-neutral">Real-Time Audit Trail</span>
+            </div>
+            <div class="timeline-trail" id="alert-incident-timeline">
+              <!-- Dynamically populated from alert.timeline -->
+            </div>
+          </div>
+
+          <!-- Other alerts from the same IP -->
+          <div class="card other-alerts-card">
+            <h3 class="panel-card-title" id="other-alerts-title">Other alerts from this host</h3>
+            <div class="other-alerts-table" id="other-alerts-list">
+              <!-- Dynamically populated from alert.relatedAlerts -->
+            </div>
+          </div>
+
+          <!-- Bottom False Alarm Action Banner -->
+          <div class="card false-alarm-banner">
+            <div class="false-alarm-text">
+              <h4 class="false-alarm-title">Is this a false alarm?</h4>
+              <p class="false-alarm-sub">Marking it helps the team improve the detector.</p>
+            </div>
+            <button type="button" class="btn btn-outline-danger" id="btn-mark-false-alarm">
+              Mark as false alarm
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==============================================
+             PAGE 3: ZERO-DAY SIMULATOR VIEW
+             ============================================== -->
+        <section id="content-simulator" class="content-view">
+          <header class="simulator-header">
+            <h1 class="simulator-title">Zero-Day Simulator</h1>
+            <p class="simulator-subtitle">Pick an attack. We hide it from the model, then launch it. Watch whether it gets caught.</p>
+          </header>
+
+          <!-- Simulator Control Bar -->
+          <div class="card simulator-controls-card">
+            <div class="controls-left">
+              <div class="control-field">
+                <label for="select-attack-type" class="control-label">Attack type</label>
+                <div class="custom-select-wrap">
+                  <select id="select-attack-type" class="simulator-dropdown">
+                    <option value="DDoS" selected>DDoS</option>
+                    <option value="WebAttack">WebAttack</option>
+                    <option value="PortScan">PortScan</option>
+                    <option value="Infiltration">Infiltration</option>
+                    <option value="Botnet">Botnet</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary" id="btn-launch-attack">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Launch unseen attack</span>
+              </button>
+              <button type="button" class="btn btn-outline" id="btn-sim-reset">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                <span>Reset Baseline</span>
+              </button>
+            </div>
+
+            <div class="controls-right">
+              <div class="model-status-pill">
+                <span class="status-dot"></span>
+                <span id="simulator-model-status">The model has never seen DDoS.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Stats Cards -->
+          <div class="sim-stats-grid">
+            <div class="card sim-stat-card">
+              <div class="sim-stat-top">
+                <span class="sim-stat-label">Attacks launched</span>
+                <div class="sim-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </div>
+              </div>
+              <div class="sim-stat-val" id="stat-attacks-launched">500</div>
+            </div>
+
+            <div class="card sim-stat-card">
+              <div class="sim-stat-top">
+                <span class="sim-stat-label">Attacks caught</span>
+                <div class="sim-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="sim-stat-val highlight-value" id="stat-attacks-caught">410</div>
+            </div>
+
+            <div class="card sim-stat-card">
+              <div class="sim-stat-top">
+                <span class="sim-stat-label">Caught rate</span>
+                <div class="sim-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="sim-stat-val text-orange" id="stat-caught-rate">82%</div>
+            </div>
+          </div>
+
+          <!-- Main Simulator Grid: Live Alert Feed & Caught vs Missed Donut -->
+          <div class="sim-content-grid">
+            <!-- Left: Live Alert Feed Table -->
+            <div class="card sim-feed-card">
+              <div class="card-header">
+                <div class="feed-title-wrap">
+                  <h3 class="card-title">Live alert feed</h3>
+                  <span class="live-pulse" title="Streaming real-time detection">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-dot"></span>
+                    LIVE
+                  </span>
+                </div>
+                <span class="feed-counter" id="feed-count-badge">4 recent detections</span>
+              </div>
+
+              <div class="table-responsive">
+                <table class="sim-table" id="sim-live-table">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Source IP</th>
+                      <th>Score</th>
+                      <th>Risk</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sim-table-body">
+                    <tr>
+                      <td class="code-font">09:12:01</td>
+                      <td class="code-font">203.0.113.8</td>
+                      <td><span class="table-score">95</span></td>
+                      <td><span class="severity-tag tag-critical">Critical</span></td>
+                      <td class="table-reason">Packet rate 40x above normal</td>
+                    </tr>
+                    <tr>
+                      <td class="code-font">09:12:02</td>
+                      <td class="code-font">203.0.113.8</td>
+                      <td><span class="table-score">91</span></td>
+                      <td><span class="severity-tag tag-critical">Critical</span></td>
+                      <td class="table-reason">Rare destination port</td>
+                    </tr>
+                    <tr>
+                      <td class="code-font">09:12:03</td>
+                      <td class="code-font">198.51.100.4</td>
+                      <td><span class="table-score">78</span></td>
+                      <td><span class="severity-tag tag-high">High</span></td>
+                      <td class="table-reason">Many short connections</td>
+                    </tr>
+                    <tr>
+                      <td class="code-font">09:12:04</td>
+                      <td class="code-font">198.51.100.4</td>
+                      <td><span class="table-score">58</span></td>
+                      <td><span class="severity-tag tag-medium">Medium</span></td>
+                      <td class="table-reason">Unusual request size</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right: Caught vs Missed Donut Chart -->
+            <div class="card sim-donut-card">
+              <div class="card-header">
+                <h3 class="card-title">Caught vs missed</h3>
+              </div>
+
+              <div class="sim-donut-body">
+                <div class="donut-visual-container">
+                  <svg class="donut-svg" viewBox="0 0 160 160">
+                    <circle cx="80" cy="80" r="62" fill="none" stroke="rgba(12,12,12,0.06)" stroke-width="16" />
+                    <!-- Missed: 18% -->
+                    <circle id="sim-donut-missed" cx="80" cy="80" r="62" fill="none" stroke="#666666" stroke-width="16"
+                      stroke-dasharray="70 390" stroke-dashoffset="0" />
+                    <!-- Caught: 82% (Signature Orange) -->
+                    <circle id="sim-donut-caught" cx="80" cy="80" r="62" fill="none" stroke="#FF6F32" stroke-width="16"
+                      stroke-dasharray="320 390" stroke-dashoffset="-70" />
+                  </svg>
+                  <div class="donut-center-stat">
+                    <span class="center-number" id="sim-donut-center-num">500</span>
+                    <span class="center-sub">Launched</span>
+                  </div>
+                </div>
+
+                <div class="donut-legend">
+                  <div class="legend-row">
+                    <div class="legend-left">
+                      <span class="legend-dot color-critical"></span>
+                      <span class="legend-name">Caught</span>
+                    </div>
+                    <div class="legend-right">
+                      <span class="legend-count" id="sim-legend-caught-cnt">410</span>
+                      <span class="legend-pct text-orange" id="sim-legend-caught-pct">82%</span>
+                    </div>
+                  </div>
+                  <div class="legend-row">
+                    <div class="legend-left">
+                      <span class="legend-dot color-low"></span>
+                      <span class="legend-name">Missed</span>
+                    </div>
+                    <div class="legend-right">
+                      <span class="legend-count" id="sim-legend-missed-cnt">90</span>
+                      <span class="legend-pct" id="sim-legend-missed-pct">18%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulation Run History Ledger -->
+          <div class="card sim-history-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Simulation Run History</h3>
+                <span class="card-subtitle">Audited log of synthetic zero-day injection trials</span>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline" id="btn-clear-sim-history">Clear History</button>
+            </div>
+            <div class="table-responsive">
+              <table class="report-table" id="table-sim-history">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Scenario Vector</th>
+                    <th>Packets Injected</th>
+                    <th>Intercepted</th>
+                    <th>Catch Rate</th>
+                    <th>Detection Verdict</th>
+                  </tr>
+                </thead>
+                <tbody id="sim-history-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Bottom Simulator Banner -->
+          <div class="card security-insights-banner">
+            <div class="insights-left">
+              <div class="insights-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <div class="insights-text">
+                <h4 class="insights-title" id="sim-banner-title">Caught 82% of an attack the model never saw.</h4>
+                <p class="insights-body" id="sim-banner-desc">The model was trained without any DDoS traffic.</p>
+              </div>
+            </div>
+            <div class="insights-right">
+              <button type="button" class="btn btn-primary" id="btn-sim-report">
+                View detailed report
+              </button>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==============================================
+             PAGE: REPORTS VIEW (Integrated)
+             ============================================== -->
+        <section id="content-reports" class="content-view">
+          <header class="section-header">
+            <div>
+              <h1 class="page-title">Threat & Evaluation Reports</h1>
+              <p class="page-subtitle">ZeroSight model generalization benchmarks and incident audits</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-outline" id="btn-export-json" type="button">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Export JSON</span>
+              </button>
+              <button class="btn btn-primary" id="btn-export-report" type="button">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9V2h12v7"></path>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span>Export PDF Report</span>
+              </button>
+            </div>
+          </header>
+
+          <!-- Executive Threat Summary (Preserved) -->
+          <div class="card reports-summary-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Executive Threat Summary • Nov 9, 2026</h3>
+                <span class="card-subtitle">Continuous evaluation across live ingress flows and synthetic unseen attack injections</span>
+              </div>
+              <span class="severity-tag tag-critical">Verified Attack Vectors</span>
+            </div>
+            <div class="report-stats-row">
+              <div class="rep-stat-box">
+                <span class="rep-label">Zero-Day Catch Rate</span>
+                <span class="rep-value text-orange">82.4%</span>
+                <span class="rep-sub">vs baseline signature-only 54.0% (+28.4% gain)</span>
+              </div>
+              <div class="rep-stat-box">
+                <span class="rep-label">Mean Time to Detect (MTTD)</span>
+                <span class="rep-value">4.2s</span>
+                <span class="rep-sub">Sub-second anomaly detection & classification</span>
+              </div>
+              <div class="rep-stat-box">
+                <span class="rep-label">Autonomous Mitigations</span>
+                <span class="rep-value text-orange">9 / 9</span>
+                <span class="rep-sub">100% critical threat vectors isolated</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section A: Model Performance -->
+          <div class="reports-section">
+            <div class="reports-section-header">
+              <div>
+                <h3 class="reports-section-title">A. Model Performance</h3>
+                <p class="reports-section-desc">Standardized validation metrics computed on 15,000 real-world flow sequences and zero-day attack traces.</p>
+              </div>
+              <span class="benchmark-badge">Dataset: CIC-IDS2017 & Live Telemetry</span>
+            </div>
+
+            <div class="model-perf-grid">
+              <div class="card perf-stat-card">
+                <div class="perf-metric-header">
+                  <span class="perf-metric-label">Accuracy</span>
+                  <span class="perf-metric-tag tag-high">Pass</span>
+                </div>
+                <div class="perf-metric-value">96.8%</div>
+                <div class="perf-progress-bar">
+                  <div class="perf-progress-fill" style="width: 96.8%;"></div>
+                </div>
+                <p class="perf-metric-desc">Overall correct classification across all attack and benign test samples.</p>
+              </div>
+
+              <div class="card perf-stat-card">
+                <div class="perf-metric-header">
+                  <span class="perf-metric-label">Precision</span>
+                  <span class="perf-metric-tag tag-high">Optimized</span>
+                </div>
+                <div class="perf-metric-value text-orange">94.2%</div>
+                <div class="perf-progress-bar">
+                  <div class="perf-progress-fill fill-orange" style="width: 94.2%;"></div>
+                </div>
+                <p class="perf-metric-desc">Ratio of true zero-day attacks among all anomalies flagged by the autoencoder.</p>
+              </div>
+
+              <div class="card perf-stat-card">
+                <div class="perf-metric-header">
+                  <span class="perf-metric-label">Recall</span>
+                  <span class="perf-metric-tag tag-high">High Sensitivity</span>
+                </div>
+                <div class="perf-metric-value">91.5%</div>
+                <div class="perf-progress-bar">
+                  <div class="perf-progress-fill" style="width: 91.5%;"></div>
+                </div>
+                <p class="perf-metric-desc">Percentage of actual malicious attacks caught before lateral network propagation.</p>
+              </div>
+
+              <div class="card perf-stat-card">
+                <div class="perf-metric-header">
+                  <span class="perf-metric-label">F1 Score</span>
+                  <span class="perf-metric-tag tag-high">Balanced</span>
+                </div>
+                <div class="perf-metric-value text-orange">92.8%</div>
+                <div class="perf-progress-bar">
+                  <div class="perf-progress-fill fill-orange" style="width: 92.8%;"></div>
+                </div>
+                <p class="perf-metric-desc">Harmonic mean of precision and recall ensuring robust low-false-alarm operation.</p>
+              </div>
+            </div>
+
+            <!-- Confusion Matrix / Classification Details -->
+            <div class="card perf-matrix-card">
+              <div class="card-header">
+                <h4 class="card-title">Confusion Matrix & Statistical Breakdown</h4>
+                <span class="perf-matrix-auc">ROC-AUC: <strong>0.978</strong></span>
+              </div>
+              <div class="matrix-grid">
+                <div class="matrix-box box-tp">
+                  <div class="matrix-label">True Positives (TP)</div>
+                  <div class="matrix-value text-orange">410</div>
+                  <div class="matrix-sub">Unseen zero-days caught & blocked</div>
+                </div>
+                <div class="matrix-box box-fp">
+                  <div class="matrix-label">False Positives (FP)</div>
+                  <div class="matrix-value">25</div>
+                  <div class="matrix-sub">0.17% normal traffic flagged</div>
+                </div>
+                <div class="matrix-box box-tn">
+                  <div class="matrix-label">True Negatives (TN)</div>
+                  <div class="matrix-value">14,527</div>
+                  <div class="matrix-sub">Legitimate flows passed cleanly</div>
+                </div>
+                <div class="matrix-box box-fn">
+                  <div class="matrix-label">False Negatives (FN)</div>
+                  <div class="matrix-value">38</div>
+                  <div class="matrix-sub">Low-rate stealth probes missed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section B: Attack Detection Analysis -->
+          <div class="reports-section">
+            <div class="reports-section-header">
+              <div>
+                <h3 class="reports-section-title">B. Attack Detection Analysis</h3>
+                <p class="reports-section-desc">Performance breakdown evaluated by distinct threat category, including benign traffic baseline integrity.</p>
+              </div>
+            </div>
+
+            <div class="card attack-analysis-card">
+              <div class="table-responsive">
+                <table class="report-table" id="table-attack-analysis">
+                  <thead>
+                    <tr>
+                      <th>Attack Category</th>
+                      <th>Tested Packets</th>
+                      <th>Detected / Caught</th>
+                      <th>Catch Rate</th>
+                      <th>Average Risk</th>
+                      <th>Mean Latency</th>
+                      <th>Generalization Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="attack-type-cell">
+                          <span class="attack-badge badge-ddos">DDoS</span>
+                          <div>
+                            <strong>Distributed Denial of Service</strong>
+                            <span class="cell-sub">SYN flood, UDP amp, volumetric anomalies</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>500</td>
+                      <td><strong>410</strong></td>
+                      <td>
+                        <div class="rate-cell">
+                          <span class="rate-val text-orange">82.4%</span>
+                          <div class="mini-progress"><div class="mini-bar" style="width: 82.4%;"></div></div>
+                        </div>
+                      </td>
+                      <td><span class="severity-tag tag-critical">92 Critical</span></td>
+                      <td>3.8 ms</td>
+                      <td><span class="status-pill status-active">High Generalization</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="attack-type-cell">
+                          <span class="attack-badge badge-web">WebAttack</span>
+                          <div>
+                            <strong>Web Application Attacks</strong>
+                            <span class="cell-sub">Zero-day SQLi, XSS payload anomalies</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>200</td>
+                      <td><strong>177</strong></td>
+                      <td>
+                        <div class="rate-cell">
+                          <span class="rate-val text-orange">88.5%</span>
+                          <div class="mini-progress"><div class="mini-bar" style="width: 88.5%;"></div></div>
+                        </div>
+                      </td>
+                      <td><span class="severity-tag tag-high">81 High</span></td>
+                      <td>4.1 ms</td>
+                      <td><span class="status-pill status-active">Confirmed Pattern</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="attack-type-cell">
+                          <span class="attack-badge badge-scan">PortScan</span>
+                          <div>
+                            <strong>Reconnaissance Port Sweeps</strong>
+                            <span class="cell-sub">Unseen SYN stealth scanning & OS probes</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>500</td>
+                      <td><strong>370</strong></td>
+                      <td>
+                        <div class="rate-cell">
+                          <span class="rate-val">74.0%</span>
+                          <div class="mini-progress"><div class="mini-bar" style="width: 74%;"></div></div>
+                        </div>
+                      </td>
+                      <td><span class="severity-tag tag-medium">64 Medium</span></td>
+                      <td>2.9 ms</td>
+                      <td><span class="status-pill status-active">Active Containment</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="attack-type-cell">
+                          <span class="attack-badge badge-benign">Benign</span>
+                          <div>
+                            <strong>Normal Legitimate Traffic</strong>
+                            <span class="cell-sub">HTTPS, API REST, internal DNS queries</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>14,300</td>
+                      <td><strong>14,210 Passed</strong></td>
+                      <td>
+                        <div class="rate-cell">
+                          <span class="rate-val text-orange">99.4%</span>
+                          <div class="mini-progress"><div class="mini-bar" style="width: 99.4%;"></div></div>
+                        </div>
+                      </td>
+                      <td><span class="severity-tag tag-low">8 Low</span></td>
+                      <td>1.8 ms</td>
+                      <td><span class="status-pill status-baseline">Baseline Stable</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section C: Detection Trends -->
+          <div class="reports-section">
+            <div class="reports-section-header">
+              <div>
+                <h3 class="reports-section-title">C. Detection Trends (Past 7 Days)</h3>
+                <p class="reports-section-desc">Daily progression of Zero-Day Catch Rate, False Positive rate, and False Negative rate over continuous model telemetry.</p>
+              </div>
+              <div class="trend-legends">
+                <span class="legend-chip"><span class="legend-dot dot-orange"></span> Zero-Day Catch Rate</span>
+                <span class="legend-chip"><span class="legend-dot dot-dark"></span> False Negatives (FN)</span>
+                <span class="legend-chip"><span class="legend-dot dot-gray"></span> False Positives (FP)</span>
+              </div>
+            </div>
+
+            <div class="card trend-chart-card">
+              <div class="trend-chart-container">
+                <svg class="trend-svg" viewBox="0 0 900 280" preserveAspectRatio="none" aria-label="7-Day Detection Trends">
+                  <defs>
+                    <linearGradient id="trendOrangeGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#FF6F32" stop-opacity="0.25"></stop>
+                      <stop offset="100%" stop-color="#FF6F32" stop-opacity="0.0"></stop>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Horizontal Grid Lines -->
+                  <line x1="60" y1="40" x2="880" y2="40" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
+                  <text x="50" y="44" class="chart-axis-text" text-anchor="end">100%</text>
+
+                  <line x1="60" y1="90" x2="880" y2="90" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
+                  <text x="50" y="94" class="chart-axis-text" text-anchor="end">80%</text>
+
+                  <line x1="60" y1="140" x2="880" y2="140" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
+                  <text x="50" y="144" class="chart-axis-text" text-anchor="end">60%</text>
+
+                  <line x1="60" y1="190" x2="880" y2="190" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
+                  <text x="50" y="194" class="chart-axis-text" text-anchor="end">20%</text>
+
+                  <line x1="60" y1="230" x2="880" y2="230" stroke="#0C0C0C" stroke-width="1.2"></line>
+                  <text x="50" y="234" class="chart-axis-text" text-anchor="end">0%</text>
+
+                  <!-- Dates on X-axis -->
+                  <text x="100" y="254" class="chart-axis-text" text-anchor="middle">Nov 3</text>
+                  <text x="230" y="254" class="chart-axis-text" text-anchor="middle">Nov 4</text>
+                  <text x="360" y="254" class="chart-axis-text" text-anchor="middle">Nov 5</text>
+                  <text x="490" y="254" class="chart-axis-text" text-anchor="middle">Nov 6</text>
+                  <text x="620" y="254" class="chart-axis-text" text-anchor="middle">Nov 7</text>
+                  <text x="750" y="254" class="chart-axis-text" text-anchor="middle">Nov 8</text>
+                  <text x="860" y="254" class="chart-axis-text" text-anchor="middle">Nov 9 (Today)</text>
+
+                  <!-- Area fill under Catch Rate curve -->
+                  <polygon points="100,230 100,94 230,92 360,89 490,87 620,85 750,84 860,84 860,230" fill="url(#trendOrangeGrad)"></polygon>
+
+                  <!-- Catch Rate Line (Orange) -->
+                  <polyline points="100,94 230,92 360,89 490,87 620,85 750,84 860,84" fill="none" stroke="#FF6F32" stroke-width="3.5" stroke-linecap="round"></polyline>
+
+                  <!-- False Negatives Line (Dark) -->
+                  <polyline points="100,217 230,218 360,219 490,220 620,221 750,221 860,222" fill="none" stroke="#0C0C0C" stroke-width="2" stroke-dasharray="5,4"></polyline>
+
+                  <!-- False Positives Line (Muted Gray) -->
+                  <polyline points="100,226 230,227 360,227 490,228 620,228 750,229 860,229" fill="none" stroke="#888888" stroke-width="2"></polyline>
+
+                  <!-- Data Point Dots on Catch Rate -->
+                  <circle cx="100" cy="94" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
+                  <circle cx="230" cy="92" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
+                  <circle cx="360" cy="89" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
+                  <circle cx="490" cy="87" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
+                  <circle cx="620" cy="85" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
+                  <circle cx="750" cy="84" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
+                  <circle cx="860" cy="84" r="6" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2.5"></circle>
+
+                  <!-- Callout Tag at Latest Point -->
+                  <rect x="790" y="55" width="85" height="22" rx="4" fill="#0C0C0C"></rect>
+                  <text x="832" y="70" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">82.4% Catch</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section D: Incident Audit -->
+          <div class="reports-section">
+            <div class="reports-section-header">
+              <div>
+                <h3 class="reports-section-title">D. Incident Audit</h3>
+                <p class="reports-section-desc">Forensic event log of verified zero-day anomalies and mitigation actions taken.</p>
+              </div>
+              <div class="data-notice-pill">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Live Telemetry & Evaluation Baseline</span>
+              </div>
+            </div>
+
+            <div class="card incident-audit-card">
+              <div class="incident-audit-toolbar">
+                <div class="search-input-wrap">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" id="input-audit-search" placeholder="Filter incidents by ID, attack type or IP..." class="table-search-input">
+                </div>
+                <div class="incident-counts-tag">
+                  Showing 6 of 6 audited events
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="report-table" id="table-incident-audit">
+                  <thead>
+                    <tr>
+                      <th>Incident ID</th>
+                      <th>Attack Type</th>
+                      <th>Source IP</th>
+                      <th>Risk Score</th>
+                      <th>Detection Timestamp</th>
+                      <th>Detection Status</th>
+                      <th class="text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="audit-table-body">
+                    <tr>
+                      <td class="font-mono text-bold">INC-2026-8941</td>
+                      <td><span class="attack-badge badge-ddos">DDoS Flood</span></td>
+                      <td class="font-mono">192.168.1.45</td>
+                      <td><span class="severity-tag tag-critical">92 Critical</span></td>
+                      <td class="text-muted">Nov 9, 2026 • 09:01:12</td>
+                      <td><span class="status-pill status-quarantined">Blocked & Quarantined</span></td>
+                      <td class="text-right">
+                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="1">Inspect</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-bold">INC-2026-8940</td>
+                      <td><span class="attack-badge badge-web">WebAttack SQLi</span></td>
+                      <td class="font-mono">172.16.4.9</td>
+                      <td><span class="severity-tag tag-high">81 High</span></td>
+                      <td class="text-muted">Nov 9, 2026 • 09:05:40</td>
+                      <td><span class="status-pill status-quarantined">WAF Filter Drop</span></td>
+                      <td class="text-right">
+                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="2">Inspect</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-bold">INC-2026-8939</td>
+                      <td><span class="attack-badge badge-scan">PortScan Sweep</span></td>
+                      <td class="font-mono">10.0.0.17</td>
+                      <td><span class="severity-tag tag-medium">64 Medium</span></td>
+                      <td class="text-muted">Nov 9, 2026 • 09:03:22</td>
+                      <td><span class="status-pill status-ratelimited">Rate Limited</span></td>
+                      <td class="text-right">
+                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="3">Inspect</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-bold">INC-2026-8938</td>
+                      <td><span class="attack-badge badge-ddos">SYN Flood</span></td>
+                      <td class="font-mono">198.51.100.22</td>
+                      <td><span class="severity-tag tag-critical">89 Critical</span></td>
+                      <td class="text-muted">Nov 9, 2026 • 08:44:19</td>
+                      <td><span class="status-pill status-quarantined">Host Isolated</span></td>
+                      <td class="text-right">
+                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="1">Inspect</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-bold">INC-2026-8937</td>
+                      <td><span class="attack-badge badge-web">Zero-Day Payload</span></td>
+                      <td class="font-mono">203.0.113.88</td>
+                      <td><span class="severity-tag tag-high">76 High</span></td>
+                      <td class="text-muted">Nov 9, 2026 • 08:12:05</td>
+                      <td><span class="status-pill status-quarantined">Session Terminated</span></td>
+                      <td class="text-right">
+                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="2">Inspect</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-bold">INC-2026-8936</td>
+                      <td><span class="attack-badge badge-scan">Stealth Sweep</span></td>
+                      <td class="font-mono">192.168.10.104</td>
+                      <td><span class="severity-tag tag-medium">58 Medium</span></td>
+                      <td class="text-muted">Nov 9, 2026 • 07:55:31</td>
+                      <td><span class="status-pill status-ratelimited">Firewall Dropped</span></td>
+                      <td class="text-right">
+                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="3">Inspect</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==============================================
+             PAGE: SETTINGS VIEW (Integrated & Responsive)
+             ============================================== -->
+        <section id="content-settings" class="content-view">
+          <header class="section-header">
+            <div>
+              <h1 class="page-title">SOC Settings & Configuration</h1>
+              <p class="page-subtitle">Detection thresholds, model hyperparameters, notification channels, and session governance</p>
+            </div>
+            <div class="header-action-group">
+              <button type="button" class="btn btn-outline" id="btn-reset-settings">Reset Defaults</button>
+              <button type="button" class="btn btn-primary" id="btn-save-settings">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                <span>Save Configuration</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="settings-grid">
+            <!-- 1. Detection Threshold (Preserved & Enhanced) -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Zero-Day Anomaly Threshold</h3>
+                  <span class="card-subtitle">Sensitivity cutoff for unclassified traffic patterns</span>
+                </div>
+                <span class="setting-tag" id="setting-preset-label">Standard</span>
+              </div>
+              <p class="settings-desc">Controls the neural autoencoder reconstruction error cutoff. Higher values reduce false alarms; lower values increase zero-day sensitivity.</p>
+              
+              <div class="settings-slider-wrap">
+                <div class="slider-val-header">
+                  <span>Current Sensitivity Score</span>
+                  <span class="slider-active-val" id="val-threshold">85</span>
+                </div>
+                <input type="range" id="slider-threshold" min="50" max="99" value="85" class="custom-slider" aria-label="Anomaly threshold slider">
+                <div class="slider-val-row">
+                  <span>Conservative (50)</span>
+                  <span>Balanced Baseline (85)</span>
+                  <span>Aggressive (99)</span>
+                </div>
+              </div>
+
+              <div class="preset-buttons-row">
+                <span class="sub-label">Sensitivity Presets:</span>
+                <div class="preset-btn-group">
+                  <button type="button" class="btn-preset" data-preset="75">Conservative (75)</button>
+                  <button type="button" class="btn-preset active-preset" data-preset="85">Balanced (85)</button>
+                  <button type="button" class="btn-preset" data-preset="95">Aggressive (95)</button>
+                </div>
+              </div>
+
+              <div class="setting-toggle-row">
+                <div class="toggle-text">
+                  <strong>Auto-Quarantine Critical Anomalies</strong>
+                  <span>Automatically block hosts triggering risk score >= 90 without awaiting manual review</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-auto-quarantine" checked>
+                  <span class="slider-switch round"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 2. Model Configuration -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Model Configuration</h3>
+                  <span class="card-subtitle">Inference engine hyperparameters & runtime</span>
+                </div>
+                <span class="status-pill status-active">Active</span>
+              </div>
+              <p class="settings-desc">Specify the underlying deep-learning architecture used for line-rate packet flow evaluation.</p>
+
+              <div class="setting-control-stack">
+                <div class="setting-field">
+                  <label for="select-model-engine" class="setting-label">Primary Anomaly Engine</label>
+                  <select id="select-model-engine" class="custom-select">
+                    <option value="autoencoder" selected>Hybrid Autoencoder + XGBoost (Production Default)</option>
+                    <option value="isolation-forest">Isolation Forest Ensemble (Low Latency)</option>
+                    <option value="transformer">Deep Packet Transformer v2 (High Context)</option>
+                  </select>
+                </div>
+
+                <div class="setting-field-row">
+                  <div class="setting-field">
+                    <label class="setting-label">Inference SLA Target</label>
+                    <input type="text" class="custom-input input-readonly" value="< 5.0 ms per flow" readonly>
+                  </div>
+                  <div class="setting-field">
+                    <label class="setting-label">Feature Dimension</label>
+                    <input type="text" class="custom-input input-readonly" value="38 Flow Vectors" readonly>
+                  </div>
+                </div>
+
+                <div class="setting-field">
+                  <label for="select-ingest-mode" class="setting-label">Stream Ingestion Mode</label>
+                  <select id="select-ingest-mode" class="custom-select">
+                    <option value="dpdk" selected>Kernel Bypass DPDK (10Gbps line rate)</option>
+                    <option value="af_packet">Standard AF_PACKET Ring Buffer</option>
+                    <option value="pcap">Offline PCAP Replay Buffer</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Alert Preferences & Containment -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Alert Preferences</h3>
+                  <span class="card-subtitle">Severity thresholds & automated containment policy</span>
+                </div>
+              </div>
+              <p class="settings-desc">Customize which severity tiers generate audible alerts and immediate containment workflows.</p>
+
+              <div class="setting-control-stack">
+                <div class="setting-field">
+                  <label for="select-containment-policy" class="setting-label">Automated Containment Policy</label>
+                  <select id="select-containment-policy" class="custom-select">
+                    <option value="contain-critical" selected>Isolate Host on Critical (Score >= 80)</option>
+                    <option value="contain-all">Isolate Host on High or Critical (Score >= 60)</option>
+                    <option value="prompt-analyst">Require Manual Analyst Approval for All Mitigations</option>
+                    <option value="audit-only">Passive Audit Mode (No automated firewall drop)</option>
+                  </select>
+                </div>
+
+                <div class="setting-toggle-row">
+                  <div class="toggle-text">
+                    <strong>Audible Critical Alert Chime</strong>
+                    <span>Sound high-priority SOC buzzer when risk score exceeds 90</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="switch-sound" checked>
+                    <span class="slider-switch round"></span>
+                  </label>
+                </div>
+
+                <div class="setting-toggle-row">
+                  <div class="toggle-text">
+                    <strong>Feedback Calibration Loop</strong>
+                    <span>Retrain anomaly weights when an analyst marks an alert as false alarm</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="switch-feedback" checked>
+                    <span class="slider-switch round"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Notification Settings & SIEM -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Notification Settings</h3>
+                  <span class="card-subtitle">SIEM webhook forwarding & SOC alert channels</span>
+                </div>
+                <span class="status-pill status-baseline">Connected</span>
+              </div>
+              <p class="settings-desc">Stream zero-day anomaly events directly into enterprise SIEM collectors via HTTPS webhook.</p>
+
+              <div class="setting-control-stack">
+                <div class="setting-field">
+                  <label for="input-webhook-url" class="setting-label">SIEM Webhook URL</label>
+                  <div class="input-with-button">
+                    <input type="url" id="input-webhook-url" class="custom-input" value="https://siem.internal.corp/api/v2/zeroday-events">
+                    <button type="button" class="btn btn-outline" id="btn-test-webhook">Test Webhook</button>
+                  </div>
+                </div>
+
+                <div class="setting-field">
+                  <label for="select-log-format" class="setting-label">Payload Format</label>
+                  <select id="select-log-format" class="custom-select">
+                    <option value="json" selected>Structured JSON (ZeroSight v2 Schema)</option>
+                    <option value="cef">CEF (Common Event Format - ArcSight/Splunk)</option>
+                    <option value="syslog">Syslog RFC 5424</option>
+                  </select>
+                </div>
+
+                <div class="channel-toggles-grid">
+                  <label class="channel-check-item">
+                    <input type="checkbox" checked id="chk-chan-splunk">
+                    <span>Splunk / Elastic HEC</span>
+                  </label>
+                  <label class="channel-check-item">
+                    <input type="checkbox" checked id="chk-chan-pagerduty">
+                    <span>PagerDuty Tier 3</span>
+                  </label>
+                  <label class="channel-check-item">
+                    <input type="checkbox" checked id="chk-chan-email">
+                    <span>Daily Executive Digest</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Security Configuration & Session Governance -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Security & Session Governance</h3>
+                  <span class="card-subtitle">Analyst authentication, timeouts & compliance</span>
+                </div>
+              </div>
+              <p class="settings-desc">Manage session expiration policies and regulatory audit trail parameters.</p>
+
+              <div class="setting-control-stack">
+                <div class="session-user-badge">
+                  <div class="session-avatar">AM</div>
+                  <div class="session-user-info">
+                    <strong>Alex Mercer</strong>
+                    <span>Security Analyst • Session active via FIDO2 MFA</span>
+                  </div>
+                </div>
+
+                <div class="setting-field-row">
+                  <div class="setting-field">
+                    <label for="select-timeout" class="setting-label">Session Inactivity Timeout</label>
+                    <select id="select-timeout" class="custom-select">
+                      <option value="15">15 minutes</option>
+                      <option value="30" selected>30 minutes (Standard)</option>
+                      <option value="60">1 hour</option>
+                      <option value="240">4 hours</option>
+                    </select>
+                  </div>
+                  <div class="setting-field">
+                    <label for="select-retention" class="setting-label">Audit Log Retention</label>
+                    <select id="select-retention" class="custom-select">
+                      <option value="90" selected>90 Days (SOC2 / ISO 27001)</option>
+                      <option value="180">180 Days</option>
+                      <option value="365">1 Year</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Card Theme Surface (Preserved) -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Card Theme Surface</h3>
+                  <span class="card-subtitle">ZeroSight brand aesthetic control</span>
+                </div>
+              </div>
+              <p class="settings-desc">Toggle between high-contrast 30% Pure White cards and Dark SOC stealth panels. Both maintain the official #0C0C0C and #FF6F32 palette.</p>
+              <div class="theme-choice-buttons">
+                <button type="button" class="btn btn-outline active-theme-choice" id="btn-theme-white">
+                  30% White Cards (Official)
+                </button>
+                <button type="button" class="btn btn-outline" id="btn-theme-dark">
+                  Dark Stealth Panels
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==============================================
+             PAGE: SUPPORT VIEW (Comprehensive SOC Center)
+             ============================================== -->
+        <section id="content-support" class="content-view">
+          <header class="section-header">
+            <div>
+              <h1 class="page-title">ZeroSight Support & Knowledge Base</h1>
+              <p class="page-subtitle">Technical documentation, diagnostics, self-help guides, and 24/7 SOC Tier 3 escalation</p>
+            </div>
+            <button class="btn btn-primary" id="btn-header-contact-scroll" type="button">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Submit Ticket</span>
+            </button>
+          </header>
+
+          <!-- A. Support Overview & Operational Status Banner -->
+          <div class="support-status-banner">
+            <div class="status-banner-left">
+              <div class="pulsing-status-dot"></div>
+              <div>
+                <h4 class="banner-title">Welcome to ZeroSight Support</h4>
+                <p class="banner-desc">ZeroSight enterprise threat intelligence is operating nominally. Engine v2.6.4 is actively inspecting ingress packet streams.</p>
+              </div>
+            </div>
+            <div class="status-banner-metrics">
+              <div class="banner-metric">
+                <span class="b-label">Detection Engine</span>
+                <span class="b-val text-orange">Online</span>
+              </div>
+              <div class="banner-metric">
+                <span class="b-label">Inference Latency</span>
+                <span class="b-val">3.2 ms</span>
+              </div>
+              <div class="banner-metric">
+                <span class="b-label">Dropped Packets</span>
+                <span class="b-val">0 (0.0%)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- B. Technical Documentation -->
+          <div class="support-section">
+            <div class="support-section-header">
+              <div>
+                <h3 class="support-section-title">B. Technical Documentation & Playbooks</h3>
+                <p class="support-section-desc">Core architectural guides and operational runbooks for SOC analysts.</p>
+              </div>
+            </div>
+
+            <div class="docs-grid">
+              <div class="card doc-card">
+                <div class="doc-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h4 class="doc-title">Getting Started</h4>
+                <p class="doc-desc">Quick-start guide covering the ZeroSight workspace, live alerts queue, and the 60-30-10 operational layout.</p>
+                <button type="button" class="btn btn-outline btn-sm btn-read-guide" data-guide="getting-started">
+                  Read Playbook →
+                </button>
+              </div>
+
+              <div class="card doc-card">
+                <div class="doc-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+                <h4 class="doc-title">Understanding Threat Alerts</h4>
+                <p class="doc-desc">Deep dive into risk score derivation (0-100), neural signal contributions, and immediate containment steps.</p>
+                <button type="button" class="btn btn-outline btn-sm btn-read-guide" data-guide="threat-alerts">
+                  Read Playbook →
+                </button>
+              </div>
+
+              <div class="card doc-card">
+                <div class="doc-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </div>
+                <h4 class="doc-title">Using the Zero-Day Simulator</h4>
+                <p class="doc-desc">How to inject synthetic unseen attack vectors (DDoS, WebAttack, PortScan) and validate neural generalization catch rates.</p>
+                <button type="button" class="btn btn-outline btn-sm btn-read-guide" data-guide="simulator">
+                  Read Playbook →
+                </button>
+              </div>
+
+              <div class="card doc-card">
+                <div class="doc-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                </div>
+                <h4 class="doc-title">Understanding Detection Metrics</h4>
+                <p class="doc-desc">Demystifying Accuracy, Precision, Recall, F1 Score, MTTD, and ROC-AUC in unsupervised anomaly detection.</p>
+                <button type="button" class="btn btn-outline btn-sm btn-read-guide" data-guide="metrics">
+                  Read Playbook →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- C. Frequently Asked Questions -->
+          <div class="support-section">
+            <div class="support-section-header">
+              <div>
+                <h3 class="support-section-title">C. Frequently Asked Questions</h3>
+                <p class="support-section-desc">Direct answers to key technical questions about zero-day detection mechanics.</p>
+              </div>
+            </div>
+
+            <div class="card faq-card">
+              <div class="faq-list">
+                <div class="faq-item active">
+                  <button type="button" class="faq-question">
+                    <span>How does zero-day detection work?</span>
+                    <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    <p>Traditional cybersecurity tools rely on static signatures and CVE databases. Because zero-day attacks have never been documented before, signature scanners miss them entirely. ZeroSight uses an <strong>unsupervised deep autoencoder neural network</strong> trained exclusively on baseline legitimate network behavior.</p>
+                    <p>When an attacker executes an unseen vector, the packet reconstruction error spikes far above normal thresholds. The detector flags this mathematical divergence in under 5 milliseconds—detecting the attack by its behavioral novelty rather than an existing signature.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button type="button" class="faq-question">
+                    <span>How are risk scores calculated?</span>
+                    <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    <p>Risk scores (scaled from 0 to 100) are generated through an ensemble scoring function that combines:</p>
+                    <ul>
+                      <li><strong>Autoencoder Reconstruction Loss (40% weight):</strong> Magnitude of statistical departure from normal traffic patterns.</li>
+                      <li><strong>Packet Rate Anomaly (25% weight):</strong> Flow acceleration compared against rolling host baselines.</li>
+                      <li><strong>Target Port & Protocol Entropy (20% weight):</strong> Rarity of the destination service and socket transition sequences.</li>
+                      <li><strong>Payload Structural Divergence (15% weight):</strong> High-entropy bytes indicating shellcode, obfuscated SQLi, or encrypted payloads.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button type="button" class="faq-question">
+                    <span>How do I run an unseen attack simulation?</span>
+                    <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    <p>Navigate to the <strong>Zero-Day Simulator</strong> via the sidebar. Select an attack category (such as <em>DDoS</em>, <em>WebAttack</em>, or <em>PortScan</em>) from the dropdown, then click <strong>Launch unseen attack</strong>.</p>
+                    <p>ZeroSight streams simulated attack traffic directly through the detector. You will observe the real-time catch rate meter update, the interactive SVG donut chart animate, and the live detection feed record each caught packet stream with millisecond timestamps.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button type="button" class="faq-question">
+                    <span>What do precision and recall mean?</span>
+                    <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  <div class="faq-answer">
+                    <p>In AI-driven threat detection, precision and recall represent the core balance of SOC efficacy:</p>
+                    <ul>
+                      <li><strong>Recall (91.5% in ZeroSight):</strong> Out of all actual attacks occurring on the network, what fraction did the system catch? High recall ensures that zero-day intrusions do not slip past unnoticed.</li>
+                      <li><strong>Precision (94.2% in ZeroSight):</strong> Out of all alerts raised by the system, what fraction were genuinely malicious attacks rather than benign noise? High precision prevents analyst alert fatigue.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- D. Troubleshooting & Diagnostics -->
+          <div class="support-section">
+            <div class="support-section-header">
+              <div>
+                <h3 class="support-section-title">D. Troubleshooting & Diagnostics</h3>
+                <p class="support-section-desc">Self-diagnostic verification suite and solutions for common operational issues.</p>
+              </div>
+            </div>
+
+            <div class="troubleshoot-layout-grid">
+              <div class="troubleshoot-cards-col">
+                <div class="card troubleshoot-item-card">
+                  <h4 class="troubleshoot-item-title">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>Detection Engine Issues</span>
+                  </h4>
+                  <p class="troubleshoot-item-desc">If the engine reports <em>Degraded</em>, verify that your network tap or mirror port is streaming valid Ethernet frames. Ensure DPDK kernel drivers are loaded.</p>
+                </div>
+
+                <div class="card troubleshoot-item-card">
+                  <h4 class="troubleshoot-item-title">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <span>Model Configuration Issues</span>
+                  </h4>
+                  <p class="troubleshoot-item-desc">If false alarms spike after network topology changes, recalibrate the baseline threshold in Settings from 85 up to 90 to accommodate elevated background traffic.</p>
+                </div>
+
+                <div class="card troubleshoot-item-card">
+                  <h4 class="troubleshoot-item-title">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span>Missing Alerts in Dashboard</span>
+                  </h4>
+                  <p class="troubleshoot-item-desc">Verify your active filter criteria on the Dashboard and Alerts views. Low-severity background anomalies (scores < 40) are logged directly to the Incident Audit.</p>
+                </div>
+
+                <div class="card troubleshoot-item-card">
+                  <h4 class="troubleshoot-item-title">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <span>Simulator Injection Errors</span>
+                  </h4>
+                  <p class="troubleshoot-item-desc">If attack launch stalls, check that another simulation is not currently running. The generator limits concurrent injections to preserve telemetry integrity.</p>
+                </div>
+              </div>
+
+              <!-- Interactive Diagnostic Self-Check -->
+              <div class="card diagnostics-panel-card">
+                <div class="card-header">
+                  <div>
+                    <h4 class="card-title">Live Diagnostic Self-Check</h4>
+                    <span class="card-subtitle">Run comprehensive automated verification across all ZeroSight subcomponents</span>
+                  </div>
+                  <button type="button" class="btn btn-outline btn-sm" id="btn-run-diagnostics">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <polyline points="1 20 1 14 7 14"></polyline>
+                      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    <span>Run Diagnostics</span>
+                  </button>
+                </div>
+
+                <div class="diagnostics-terminal" id="diagnostics-terminal">
+                  <div class="term-line term-muted">ZeroSight Diagnostic Subsystem v2.6.4 ready.</div>
+                  <div class="term-line term-muted">Click "Run Diagnostics" above to initiate end-to-end self-check.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- E. System Information -->
+          <div class="support-section">
+            <div class="support-section-header">
+              <div>
+                <h3 class="support-section-title">E. System Information</h3>
+                <p class="support-section-desc">Host environment, model compilation details, and active licensing.</p>
+              </div>
+            </div>
+
+            <div class="card sysinfo-card">
+              <div class="sysinfo-grid">
+                <div class="sysinfo-item">
+                  <span class="sys-label">Application Version</span>
+                  <span class="sys-value font-mono">ZeroSight Enterprise v2.6.4-prod</span>
+                </div>
+                <div class="sysinfo-item">
+                  <span class="sys-label">Detection Engine Status</span>
+                  <span class="sys-value"><span class="status-pill status-active">Online • PID 4192</span></span>
+                </div>
+                <div class="sysinfo-item">
+                  <span class="sys-label">Neural Model Architecture</span>
+                  <span class="sys-value font-mono">PyTorch/ONNX Generalizer v4.1</span>
+                </div>
+                <div class="sysinfo-item">
+                  <span class="sys-label">Model Weights Hash</span>
+                  <span class="sys-value font-mono text-muted">SHA256: 7f8a92b1...e450</span>
+                </div>
+                <div class="sysinfo-item">
+                  <span class="sys-label">Active License</span>
+                  <span class="sys-value">Tier 3 Enterprise SOC (Unlimited Nodes)</span>
+                </div>
+                <div class="sysinfo-item">
+                  <span class="sys-label">Inference Acceleration</span>
+                  <span class="sys-value">AVX-512 / CUDA TensorCore Enabled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- F. Contact Support -->
+          <div class="support-section" id="section-contact-support">
+            <div class="support-section-header">
+              <div>
+                <h3 class="support-section-title">F. Contact Support</h3>
+                <p class="support-section-desc">Submit a technical ticket directly to ZeroSight Tier 3 Enterprise Engineering.</p>
+              </div>
+            </div>
+
+            <div class="card support-ticket-card">
+              <form id="form-support-ticket" class="support-form">
+                <div class="form-row-split">
+                  <div class="form-group">
+                    <label for="ticket-subject" class="form-label">Subject</label>
+                    <input type="text" id="ticket-subject" class="custom-input" placeholder="e.g. Anomaly threshold drift on DMZ gateway" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="ticket-category" class="form-label">Issue Category</label>
+                    <select id="ticket-category" class="custom-select" required>
+                      <option value="engine" selected>Detection Engine & Latency</option>
+                      <option value="model">Model Hyperparameters & Weights</option>
+                      <option value="alerts">Alert Triage & Mitigation Actions</option>
+                      <option value="simulator">Zero-Day Simulator Injections</option>
+                      <option value="siem">SIEM / Webhook Integration</option>
+                      <option value="other">Other Inquiry</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row-split">
+                  <div class="form-group">
+                    <label for="ticket-priority" class="form-label">Priority</label>
+                    <select id="ticket-priority" class="custom-select">
+                      <option value="low">Low (General guidance)</option>
+                      <option value="medium" selected>Medium (Standard inquiry)</option>
+                      <option value="high">High (Degraded detection)</option>
+                      <option value="critical">Critical (Zero-day false negative emergency)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ticket-analyst" class="form-label">Submitting Analyst</label>
+                    <input type="text" id="ticket-analyst" class="custom-input input-readonly" value="Alex Mercer (alex.mercer@corp.internal)" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="ticket-desc" class="form-label">Description & Steps to Reproduce</label>
+                  <textarea id="ticket-desc" class="custom-textarea" rows="4" placeholder="Detail the observed anomaly, affected IP ranges, expected model output, and diagnostic observations..." required></textarea>
+                </div>
+
+                <div class="form-actions-row">
+                  <label class="attach-telemetry-label">
+                    <input type="checkbox" id="chk-attach-telemetry" checked>
+                    <span>Attach recent telemetry snapshot and engine diagnostic logs</span>
+                  </label>
+                  <button type="submit" class="btn btn-primary" id="btn-submit-ticket">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span>Submit Support Ticket</span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Ticket Submission Success Panel (Dynamic) -->
+              <div id="ticket-success-panel" class="ticket-success-panel hidden">
+                <div class="success-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#FF6F32" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="success-content">
+                  <h4 class="success-title">Support Ticket Logged Successfully</h4>
+                  <p class="success-desc">Ticket reference: <strong class="font-mono text-orange" id="ticket-ref-id">ZS-TICKET-89241</strong>. A ZeroSight Tier 3 systems engineer has been dispatched. Expected response time: under 15 minutes.</p>
+                  <button type="button" class="btn btn-outline btn-sm" id="btn-ticket-create-another">Create Another Ticket</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Demonstration Ticket History -->
+            <div class="card ticket-history-card" id="ticket-history-card" style="margin-top: 20px;">
+              <div class="card-header">
+                <div>
+                  <h4 class="card-title">My Demonstration Tickets</h4>
+                  <span class="card-subtitle">Local browser session log of submitted SOC support tickets</span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline" id="btn-clear-tickets">Clear Ticket History</button>
+              </div>
+              <div class="table-responsive">
+                <table class="report-table" id="table-ticket-history">
+                  <thead>
+                    <tr>
+                      <th>Ticket ID</th>
+                      <th>Submitted</th>
+                      <th>Category</th>
+                      <th>Priority</th>
+                      <th>Subject</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ticket-history-tbody">
+                    <!-- Populated dynamically from localStorage -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div> <!-- /.app-workspace -->
+
+    <!-- ==============================================
+         MODAL: EXPORT PDF REPORT VIEWER & PRINT
+         ============================================== -->
+    <div id="modal-report-export" class="modal-backdrop" aria-hidden="true" role="dialog">
+      <div class="modal-dialog modal-dialog-lg">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">ZeroSight Executive Threat Report</h3>
+            <span class="modal-subtitle">Printable formal evaluation audit & incident ledger</span>
+          </div>
+          <div class="modal-actions-group">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-modal-print">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Print / Save PDF</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-modal-dl-json">
+              <span>Download JSON</span>
+            </button>
+            <button type="button" class="modal-close-btn" id="btn-modal-report-close" aria-label="Close modal">×</button>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="printable-report-sheet" id="printable-report-sheet">
+            <!-- Printable Letterhead -->
+            <div class="print-header">
+              <div class="print-brand">
+                <span class="brand-bracket">[</span>
+                <span class="brand-text">ZEROSIGHT</span>
+                <span class="brand-bracket">]</span>
+                <span class="print-tag">THREAT EVALUATION AUDIT REPORT</span>
+              </div>
+              <div class="print-meta">
+                <div><strong>Audit Date:</strong> Nov 9, 2026 • 09:30 UTC</div>
+                <div><strong>Classification:</strong> CONFIDENTIAL // SOC INTERNAL</div>
+                <div><strong>Lead Analyst:</strong> Alex Mercer (Tier 3)</div>
+              </div>
+            </div>
+
+            <div class="print-divider"></div>
+
+            <!-- Executive Summary Section -->
+            <div class="print-section">
+              <h4 class="print-sec-heading">1. EXECUTIVE THREAT & GENERALIZATION SUMMARY</h4>
+              <p class="print-text">During the continuous evaluation cycle ending November 9, 2026, the ZeroSight unsupervised anomaly detection engine was benchmarked against held-out zero-day attack traces that were completely excluded from the model training corpus. The system caught <strong>82.4%</strong> of all zero-day DDoS attack probes, achieving an average Mean Time to Detect (MTTD) of <strong>4.2 seconds</strong> with zero false positive disruptions to legitimate production flows.</p>
+              
+              <div class="print-stat-row">
+                <div class="print-stat">
+                  <div class="p-val">82.4%</div>
+                  <div class="p-lbl">Zero-Day Catch Rate</div>
+                </div>
+                <div class="print-stat">
+                  <div class="p-val">4.2s</div>
+                  <div class="p-lbl">Mean Time to Detect (MTTD)</div>
+                </div>
+                <div class="print-stat">
+                  <div class="p-val">9 / 9 (100%)</div>
+                  <div class="p-lbl">Autonomous Mitigations</div>
+                </div>
+                <div class="print-stat">
+                  <div class="p-val">96.8%</div>
+                  <div class="p-lbl">Validation Accuracy</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Model Performance Section -->
+            <div class="print-section">
+              <h4 class="print-sec-heading">2. MODEL PERFORMANCE SPECIFICATIONS</h4>
+              <table class="print-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                    <th>Benchmark Baseline</th>
+                    <th>Operational Impact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Accuracy</strong></td>
+                    <td>96.8%</td>
+                    <td>88.2%</td>
+                    <td>Overall network flow classification correctness</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Precision</strong></td>
+                    <td>94.2%</td>
+                    <td>79.4%</td>
+                    <td>Eliminates false alarm noise for SOC triagers</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Recall (Sensitivity)</strong></td>
+                    <td>91.5%</td>
+                    <td>64.1%</td>
+                    <td>Catches novel attacks before payload detonation</td>
+                  </tr>
+                  <tr>
+                    <td><strong>F1 Score</strong></td>
+                    <td>92.8%</td>
+                    <td>70.9%</td>
+                    <td>Harmonic balance of precision and recall</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ROC-AUC</strong></td>
+                    <td>0.978</td>
+                    <td>0.820</td>
+                    <td>Area under the Receiver Operating Characteristic curve</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Attack Detection Analysis -->
+            <div class="print-section">
+              <h4 class="print-sec-heading">3. ATTACK DETECTION BREAKDOWN</h4>
+              <table class="print-table">
+                <thead>
+                  <tr>
+                    <th>Attack Vector</th>
+                    <th>Tested Flows</th>
+                    <th>Caught</th>
+                    <th>Catch Rate</th>
+                    <th>Mean Risk Score</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>DDoS Flood</strong></td>
+                    <td>500</td>
+                    <td>410</td>
+                    <td>82.4%</td>
+                    <td>92 (Critical)</td>
+                    <td>High Generalization</td>
+                  </tr>
+                  <tr>
+                    <td><strong>WebAttack SQLi</strong></td>
+                    <td>200</td>
+                    <td>177</td>
+                    <td>88.5%</td>
+                    <td>81 (High)</td>
+                    <td>Confirmed Pattern</td>
+                  </tr>
+                  <tr>
+                    <td><strong>PortScan Recon</strong></td>
+                    <td>500</td>
+                    <td>370</td>
+                    <td>74.0%</td>
+                    <td>64 (Medium)</td>
+                    <td>Active Containment</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Benign Traffic</strong></td>
+                    <td>14,300</td>
+                    <td>14,210 Passed</td>
+                    <td>99.4%</td>
+                    <td>8 (Low)</td>
+                    <td>Baseline Normal</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Signoff Footer -->
+            <div class="print-footer">
+              <div class="signoff-box">
+                <span class="signoff-title">Verified by Lead Analyst:</span>
+                <span class="signoff-name">Alex Mercer, CISSP</span>
+                <span class="signoff-date">ZeroSight SOC • Signature: [DIGITALLY SIGNED // FIDO2 0x9F41]</span>
+              </div>
+              <div class="signoff-seal">
+                <div class="seal-inner">CERTIFIED<br>ZEROSIGHT<br>AUDIT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         MODAL: DOCUMENTATION PLAYBOOK READER
+         ============================================== -->
+    <div id="modal-doc-viewer" class="modal-backdrop" aria-hidden="true" role="dialog">
+      <div class="modal-dialog modal-dialog-md">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title" id="doc-modal-title">Documentation Playbook</h3>
+            <span class="modal-subtitle" id="doc-modal-subtitle">ZeroSight Security Operations Guide</span>
+          </div>
+          <button type="button" class="modal-close-btn" id="btn-modal-doc-close" aria-label="Close playbook">×</button>
+        </div>
+        <div class="modal-body" id="doc-modal-body">
+          <!-- Dynamic Guide Content Injected via JS -->
+        </div>
+      </div>
+    </div>
+
+    </div> <!-- /#app-shell -->
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
