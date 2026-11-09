@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+  iframe { width: 100%; height: 100%; border: none; }
+</style>
+</head>
+<body>
+<iframe id="frame" src="../index.html#reports"></iframe>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const doc = document.getElementById('frame').contentDocument;
+      const scrollEl = doc.getElementById('app-main-content');
+      if (scrollEl) {
+        scrollEl.scrollTop = 9999;
+      }
+    }, 1500);
+  });
+</script>
+</body>
+</html>

@@ -846,36 +846,15 @@
             </div>
           </header>
 
-          <!-- Severity Quick-Filter Pills, Dropdowns & Live Search -->
+          <!-- Severity Quick-Filter Pills, Sort & Live Search -->
           <div class="alerts-filter-bar">
             <div class="alerts-filter-pills">
-              <button type="button" class="filter-pill active-pill" data-severity="all">All Alerts (<span id="pill-cnt-all">10</span>)</button>
               <button type="button" class="filter-pill" data-severity="critical">Critical (<span id="pill-cnt-critical">3</span>)</button>
-              <button type="button" class="filter-pill" data-severity="high">High (<span id="pill-cnt-high">3</span>)</button>
-              <button type="button" class="filter-pill" data-severity="medium">Medium (<span id="pill-cnt-medium">2</span>)</button>
+              <button type="button" class="filter-pill" data-severity="high">High (<span id="pill-cnt-high">2</span>)</button>
+              <button type="button" class="filter-pill" data-severity="medium">Medium (<span id="pill-cnt-medium">3</span>)</button>
               <button type="button" class="filter-pill" data-severity="low">Low (<span id="pill-cnt-low">2</span>)</button>
             </div>
             <div class="alerts-dropdown-controls">
-              <div class="custom-select-wrap">
-                <select id="select-category-filter" class="table-select-filter" aria-label="Filter by threat category">
-                  <option value="all" selected>All Threat Vectors</option>
-                  <option value="DDoS">DDoS Flood</option>
-                  <option value="WebAttack">WebAttack SQLi / XSS</option>
-                  <option value="PortScan">PortScan Sweep</option>
-                  <option value="Infiltration">Infiltration</option>
-                  <option value="Botnet">Botnet C2</option>
-                  <option value="Benign">Benign Flow</option>
-                </select>
-              </div>
-              <div class="custom-select-wrap">
-                <select id="select-status-filter" class="table-select-filter" aria-label="Filter by status">
-                  <option value="all" selected>All Mitigation Statuses</option>
-                  <option value="Blocked & Quarantined">Blocked & Quarantined</option>
-                  <option value="WAF Intercept">WAF Intercept</option>
-                  <option value="Rate Limited">Rate Limited</option>
-                  <option value="Baseline Anomaly">Baseline Anomaly</option>
-                </select>
-              </div>
               <div class="custom-select-wrap">
                 <select id="select-sort-alerts" class="table-select-filter" aria-label="Sort alerts">
                   <option value="risk-desc" selected>Sort: Risk Score (High → Low)</option>
@@ -1360,435 +1339,457 @@
             </div>
           </header>
 
-          <!-- Executive Threat Summary (Preserved) -->
-          <div class="card reports-summary-card">
-            <div class="card-header">
-              <div>
-                <h3 class="card-title">Executive Threat Summary • Nov 9, 2026</h3>
-                <span class="card-subtitle">Continuous evaluation across live ingress flows and synthetic unseen attack injections</span>
+          <!-- 1. SECURITY OVERVIEW (Top Row Compact Summary Cards) -->
+          <div class="reports-overview-grid">
+            <!-- Total Alerts -->
+            <div class="card rep-overview-card">
+              <div class="rep-card-top">
+                <span class="rep-card-label">Total Alerts</span>
+                <div class="rep-card-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </div>
               </div>
-              <span class="severity-tag tag-critical">Verified Attack Vectors</span>
+              <div class="rep-card-value font-mono" id="rep-overview-total">10</div>
+              <span class="rep-card-sub">Active network intrusion events</span>
             </div>
-            <div class="report-stats-row">
-              <div class="rep-stat-box">
-                <span class="rep-label">Zero-Day Catch Rate</span>
-                <span class="rep-value text-orange">82.4%</span>
-                <span class="rep-sub">vs baseline signature-only 54.0% (+28.4% gain)</span>
+
+            <!-- Critical Alerts -->
+            <div class="card rep-overview-card">
+              <div class="rep-card-top">
+                <span class="rep-card-label">Critical Alerts</span>
+                <div class="rep-card-icon icon-critical">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 22 22 22"></polygon>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
               </div>
-              <div class="rep-stat-box">
-                <span class="rep-label">Mean Time to Detect (MTTD)</span>
-                <span class="rep-value">4.2s</span>
-                <span class="rep-sub">Sub-second anomaly detection & classification</span>
+              <div class="rep-card-value font-mono text-orange" id="rep-overview-critical">3</div>
+              <span class="rep-card-sub">High-priority threats requiring isolation</span>
+            </div>
+
+            <!-- Detection Rate -->
+            <div class="card rep-overview-card">
+              <div class="rep-card-top">
+                <span class="rep-card-label">Detection Rate</span>
+                <div class="rep-card-icon icon-rate">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
               </div>
-              <div class="rep-stat-box">
-                <span class="rep-label">Autonomous Mitigations</span>
-                <span class="rep-value text-orange">9 / 9</span>
-                <span class="rep-sub">100% critical threat vectors isolated</span>
-              </div>
+              <div class="rep-card-value font-mono text-orange" id="rep-overview-rate">82.4%</div>
+              <span class="rep-card-sub">Zero-day model benchmark catch rate</span>
             </div>
           </div>
 
-          <!-- Section A: Model Performance -->
-          <div class="reports-section">
-            <div class="reports-section-header">
-              <div>
-                <h3 class="reports-section-title">A. Model Performance</h3>
-                <p class="reports-section-desc">Standardized validation metrics computed on 15,000 real-world flow sequences and zero-day attack traces.</p>
-              </div>
-              <span class="benchmark-badge">Dataset: CIC-IDS2017 & Live Telemetry</span>
-            </div>
-
-            <div class="model-perf-grid">
-              <div class="card perf-stat-card">
-                <div class="perf-metric-header">
-                  <span class="perf-metric-label">Accuracy</span>
-                  <span class="perf-metric-tag tag-high">Pass</span>
-                </div>
-                <div class="perf-metric-value">96.8%</div>
-                <div class="perf-progress-bar">
-                  <div class="perf-progress-fill" style="width: 96.8%;"></div>
-                </div>
-                <p class="perf-metric-desc">Overall correct classification across all attack and benign test samples.</p>
-              </div>
-
-              <div class="card perf-stat-card">
-                <div class="perf-metric-header">
-                  <span class="perf-metric-label">Precision</span>
-                  <span class="perf-metric-tag tag-high">Optimized</span>
-                </div>
-                <div class="perf-metric-value text-orange">94.2%</div>
-                <div class="perf-progress-bar">
-                  <div class="perf-progress-fill fill-orange" style="width: 94.2%;"></div>
-                </div>
-                <p class="perf-metric-desc">Ratio of true zero-day attacks among all anomalies flagged by the autoencoder.</p>
-              </div>
-
-              <div class="card perf-stat-card">
-                <div class="perf-metric-header">
-                  <span class="perf-metric-label">Recall</span>
-                  <span class="perf-metric-tag tag-high">High Sensitivity</span>
-                </div>
-                <div class="perf-metric-value">91.5%</div>
-                <div class="perf-progress-bar">
-                  <div class="perf-progress-fill" style="width: 91.5%;"></div>
-                </div>
-                <p class="perf-metric-desc">Percentage of actual malicious attacks caught before lateral network propagation.</p>
-              </div>
-
-              <div class="card perf-stat-card">
-                <div class="perf-metric-header">
-                  <span class="perf-metric-label">F1 Score</span>
-                  <span class="perf-metric-tag tag-high">Balanced</span>
-                </div>
-                <div class="perf-metric-value text-orange">92.8%</div>
-                <div class="perf-progress-bar">
-                  <div class="perf-progress-fill fill-orange" style="width: 92.8%;"></div>
-                </div>
-                <p class="perf-metric-desc">Harmonic mean of precision and recall ensuring robust low-false-alarm operation.</p>
-              </div>
-            </div>
-
-            <!-- Confusion Matrix / Classification Details -->
-            <div class="card perf-matrix-card">
+          <!-- 2 & 3. MIDDLE ROW: Threat Severity Donut Chart & Detection Trends Line/Area Chart -->
+          <div class="reports-two-col-grid">
+            <!-- 2. Threat Severity Distribution (Donut Chart) -->
+            <div class="card reports-card reports-donut-card">
               <div class="card-header">
-                <h4 class="card-title">Confusion Matrix & Statistical Breakdown</h4>
-                <span class="perf-matrix-auc">ROC-AUC: <strong>0.978</strong></span>
+                <div>
+                  <h3 class="card-title">Threat Severity Distribution</h3>
+                  <span class="card-subtitle">Alert volume categorized by severity tier</span>
+                </div>
               </div>
-              <div class="matrix-grid">
-                <div class="matrix-box box-tp">
-                  <div class="matrix-label">True Positives (TP)</div>
-                  <div class="matrix-value text-orange">410</div>
-                  <div class="matrix-sub">Unseen zero-days caught & blocked</div>
+              <div class="rep-donut-body">
+                <div class="rep-donut-visual-wrap">
+                  <svg class="donut-svg" viewBox="0 0 160 160" aria-label="Severity distribution donut chart">
+                    <circle cx="80" cy="80" r="62" fill="none" stroke="rgba(12,12,12,0.06)" stroke-width="18" />
+                    <!-- Critical: 30% (3 alerts) = 117 arc -->
+                    <circle id="rep-donut-crit" cx="80" cy="80" r="62" fill="none" stroke="#FF6F32" stroke-width="18"
+                      stroke-dasharray="117 390" stroke-dashoffset="0" />
+                    <!-- High: 20% (2 alerts) = 78 arc -->
+                    <circle id="rep-donut-high" cx="80" cy="80" r="62" fill="none" stroke="#E05318" stroke-width="18"
+                      stroke-dasharray="78 390" stroke-dashoffset="-117" />
+                    <!-- Medium: 30% (3 alerts) = 117 arc -->
+                    <circle id="rep-donut-med" cx="80" cy="80" r="62" fill="none" stroke="#71717A" stroke-width="18"
+                      stroke-dasharray="117 390" stroke-dashoffset="-195" />
+                    <!-- Low: 20% (2 alerts) = 78 arc -->
+                    <circle id="rep-donut-low" cx="80" cy="80" r="62" fill="none" stroke="#D4D4D8" stroke-width="18"
+                      stroke-dasharray="78 390" stroke-dashoffset="-312" />
+                  </svg>
+                  <div class="donut-center-stat">
+                    <span class="center-number font-mono" id="rep-donut-total-num">10</span>
+                    <span class="center-sub">Total Alerts</span>
+                  </div>
                 </div>
-                <div class="matrix-box box-fp">
-                  <div class="matrix-label">False Positives (FP)</div>
-                  <div class="matrix-value">25</div>
-                  <div class="matrix-sub">0.17% normal traffic flagged</div>
-                </div>
-                <div class="matrix-box box-tn">
-                  <div class="matrix-label">True Negatives (TN)</div>
-                  <div class="matrix-value">14,527</div>
-                  <div class="matrix-sub">Legitimate flows passed cleanly</div>
-                </div>
-                <div class="matrix-box box-fn">
-                  <div class="matrix-label">False Negatives (FN)</div>
-                  <div class="matrix-value">38</div>
-                  <div class="matrix-sub">Low-rate stealth probes missed</div>
+                <div class="rep-donut-legend">
+                  <div class="rep-legend-item">
+                    <div class="rep-legend-left">
+                      <span class="legend-dot" style="background:#FF6F32;"></span>
+                      <span class="rep-legend-name">Critical</span>
+                    </div>
+                    <div class="rep-legend-right">
+                      <span class="rep-legend-count font-mono" id="rep-legend-crit-cnt">3</span>
+                      <span class="rep-legend-pct text-orange font-mono">30%</span>
+                    </div>
+                  </div>
+                  <div class="rep-legend-item">
+                    <div class="rep-legend-left">
+                      <span class="legend-dot" style="background:#E05318;"></span>
+                      <span class="rep-legend-name">High</span>
+                    </div>
+                    <div class="rep-legend-right">
+                      <span class="rep-legend-count font-mono" id="rep-legend-high-cnt">2</span>
+                      <span class="rep-legend-pct font-mono">20%</span>
+                    </div>
+                  </div>
+                  <div class="rep-legend-item">
+                    <div class="rep-legend-left">
+                      <span class="legend-dot" style="background:#71717A;"></span>
+                      <span class="rep-legend-name">Medium</span>
+                    </div>
+                    <div class="rep-legend-right">
+                      <span class="rep-legend-count font-mono" id="rep-legend-med-cnt">3</span>
+                      <span class="rep-legend-pct font-mono">30%</span>
+                    </div>
+                  </div>
+                  <div class="rep-legend-item">
+                    <div class="rep-legend-left">
+                      <span class="legend-dot" style="background:#D4D4D8;"></span>
+                      <span class="rep-legend-name">Low</span>
+                    </div>
+                    <div class="rep-legend-right">
+                      <span class="rep-legend-count font-mono" id="rep-legend-low-cnt">2</span>
+                      <span class="rep-legend-pct font-mono">20%</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Section B: Attack Detection Analysis -->
-          <div class="reports-section">
-            <div class="reports-section-header">
-              <div>
-                <h3 class="reports-section-title">B. Attack Detection Analysis</h3>
-                <p class="reports-section-desc">Performance breakdown evaluated by distinct threat category, including benign traffic baseline integrity.</p>
+            <!-- 3. Detection Trends (Line / Area Chart with Spike Identification) -->
+            <div class="card reports-card reports-trend-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Detection Trends</h3>
+                  <span class="card-subtitle">Intrusion velocity over time with anomaly spike identification</span>
+                </div>
+                <div class="trend-spike-badge">
+                  <span class="spike-dot"></span>
+                  <span>Spike: 09:21 UTC (UDP Amp)</span>
+                </div>
               </div>
-            </div>
-
-            <div class="card attack-analysis-card">
-              <div class="table-responsive">
-                <table class="report-table" id="table-attack-analysis">
-                  <thead>
-                    <tr>
-                      <th>Attack Category</th>
-                      <th>Tested Packets</th>
-                      <th>Detected / Caught</th>
-                      <th>Catch Rate</th>
-                      <th>Average Risk</th>
-                      <th>Mean Latency</th>
-                      <th>Generalization Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="attack-type-cell">
-                          <span class="attack-badge badge-ddos">DDoS</span>
-                          <div>
-                            <strong>Distributed Denial of Service</strong>
-                            <span class="cell-sub">SYN flood, UDP amp, volumetric anomalies</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>500</td>
-                      <td><strong>410</strong></td>
-                      <td>
-                        <div class="rate-cell">
-                          <span class="rate-val text-orange">82.4%</span>
-                          <div class="mini-progress"><div class="mini-bar" style="width: 82.4%;"></div></div>
-                        </div>
-                      </td>
-                      <td><span class="severity-tag tag-critical">92 Critical</span></td>
-                      <td>3.8 ms</td>
-                      <td><span class="status-pill status-active">High Generalization</span></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="attack-type-cell">
-                          <span class="attack-badge badge-web">WebAttack</span>
-                          <div>
-                            <strong>Web Application Attacks</strong>
-                            <span class="cell-sub">Zero-day SQLi, XSS payload anomalies</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>200</td>
-                      <td><strong>177</strong></td>
-                      <td>
-                        <div class="rate-cell">
-                          <span class="rate-val text-orange">88.5%</span>
-                          <div class="mini-progress"><div class="mini-bar" style="width: 88.5%;"></div></div>
-                        </div>
-                      </td>
-                      <td><span class="severity-tag tag-high">81 High</span></td>
-                      <td>4.1 ms</td>
-                      <td><span class="status-pill status-active">Confirmed Pattern</span></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="attack-type-cell">
-                          <span class="attack-badge badge-scan">PortScan</span>
-                          <div>
-                            <strong>Reconnaissance Port Sweeps</strong>
-                            <span class="cell-sub">Unseen SYN stealth scanning & OS probes</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>500</td>
-                      <td><strong>370</strong></td>
-                      <td>
-                        <div class="rate-cell">
-                          <span class="rate-val">74.0%</span>
-                          <div class="mini-progress"><div class="mini-bar" style="width: 74%;"></div></div>
-                        </div>
-                      </td>
-                      <td><span class="severity-tag tag-medium">64 Medium</span></td>
-                      <td>2.9 ms</td>
-                      <td><span class="status-pill status-active">Active Containment</span></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="attack-type-cell">
-                          <span class="attack-badge badge-benign">Benign</span>
-                          <div>
-                            <strong>Normal Legitimate Traffic</strong>
-                            <span class="cell-sub">HTTPS, API REST, internal DNS queries</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td>14,300</td>
-                      <td><strong>14,210 Passed</strong></td>
-                      <td>
-                        <div class="rate-cell">
-                          <span class="rate-val text-orange">99.4%</span>
-                          <div class="mini-progress"><div class="mini-bar" style="width: 99.4%;"></div></div>
-                        </div>
-                      </td>
-                      <td><span class="severity-tag tag-low">8 Low</span></td>
-                      <td>1.8 ms</td>
-                      <td><span class="status-pill status-baseline">Baseline Stable</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section C: Detection Trends -->
-          <div class="reports-section">
-            <div class="reports-section-header">
-              <div>
-                <h3 class="reports-section-title">C. Detection Trends (Past 7 Days)</h3>
-                <p class="reports-section-desc">Daily progression of Zero-Day Catch Rate, False Positive rate, and False Negative rate over continuous model telemetry.</p>
-              </div>
-              <div class="trend-legends">
-                <span class="legend-chip"><span class="legend-dot dot-orange"></span> Zero-Day Catch Rate</span>
-                <span class="legend-chip"><span class="legend-dot dot-dark"></span> False Negatives (FN)</span>
-                <span class="legend-chip"><span class="legend-dot dot-gray"></span> False Positives (FP)</span>
-              </div>
-            </div>
-
-            <div class="card trend-chart-card">
-              <div class="trend-chart-container">
-                <svg class="trend-svg" viewBox="0 0 900 280" preserveAspectRatio="none" aria-label="7-Day Detection Trends">
+              <div class="rep-trend-chart-wrap">
+                <svg class="rep-trend-svg" viewBox="0 0 600 220" preserveAspectRatio="none" aria-label="Detection trends over time">
                   <defs>
-                    <linearGradient id="trendOrangeGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#FF6F32" stop-opacity="0.25"></stop>
-                      <stop offset="100%" stop-color="#FF6F32" stop-opacity="0.0"></stop>
+                    <linearGradient id="repAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#FF6F32" stop-opacity="0.32"></stop>
+                      <stop offset="100%" stop-color="#FF6F32" stop-opacity="0.02"></stop>
                     </linearGradient>
                   </defs>
-
                   <!-- Horizontal Grid Lines -->
-                  <line x1="60" y1="40" x2="880" y2="40" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
-                  <text x="50" y="44" class="chart-axis-text" text-anchor="end">100%</text>
+                  <line x1="45" y1="30" x2="580" y2="30" stroke="#F0F0F0" stroke-dasharray="3,3"></line>
+                  <text x="35" y="34" class="chart-axis-text" text-anchor="end">40</text>
+                  <line x1="45" y1="75" x2="580" y2="75" stroke="#F0F0F0" stroke-dasharray="3,3"></line>
+                  <text x="35" y="79" class="chart-axis-text" text-anchor="end">30</text>
+                  <line x1="45" y1="120" x2="580" y2="120" stroke="#F0F0F0" stroke-dasharray="3,3"></line>
+                  <text x="35" y="124" class="chart-axis-text" text-anchor="end">20</text>
+                  <line x1="45" y1="165" x2="580" y2="165" stroke="#F0F0F0" stroke-dasharray="3,3"></line>
+                  <text x="35" y="169" class="chart-axis-text" text-anchor="end">10</text>
+                  <line x1="45" y1="190" x2="580" y2="190" stroke="#E5E5E5" stroke-width="1.2"></line>
+                  <text x="35" y="194" class="chart-axis-text" text-anchor="end">0</text>
 
-                  <line x1="60" y1="90" x2="880" y2="90" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
-                  <text x="50" y="94" class="chart-axis-text" text-anchor="end">80%</text>
+                  <!-- Time Labels on X-axis -->
+                  <text x="70" y="208" class="chart-axis-text" text-anchor="middle">08:00</text>
+                  <text x="155" y="208" class="chart-axis-text" text-anchor="middle">08:30</text>
+                  <text x="240" y="208" class="chart-axis-text" text-anchor="middle">09:00</text>
+                  <text x="325" y="208" class="chart-axis-text" text-anchor="middle">09:15</text>
+                  <text x="410" y="208" class="chart-axis-text" text-anchor="middle" font-weight="700" fill="#FF6F32">09:21</text>
+                  <text x="495" y="208" class="chart-axis-text" text-anchor="middle">09:30</text>
+                  <text x="565" y="208" class="chart-axis-text" text-anchor="middle">Now</text>
 
-                  <line x1="60" y1="140" x2="880" y2="140" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
-                  <text x="50" y="144" class="chart-axis-text" text-anchor="end">60%</text>
+                  <!-- Area Fill under curve -->
+                  <polygon points="70,190 70,172 155,160 240,115 325,128 410,42 495,148 565,158 565,190" fill="url(#repAreaGrad)"></polygon>
 
-                  <line x1="60" y1="190" x2="880" y2="190" stroke="#E5E5E5" stroke-dasharray="3,3"></line>
-                  <text x="50" y="194" class="chart-axis-text" text-anchor="end">20%</text>
+                  <!-- Line Curve -->
+                  <polyline points="70,172 155,160 240,115 325,128 410,42 495,148 565,158" fill="none" stroke="#FF6F32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
 
-                  <line x1="60" y1="230" x2="880" y2="230" stroke="#0C0C0C" stroke-width="1.2"></line>
-                  <text x="50" y="234" class="chart-axis-text" text-anchor="end">0%</text>
+                  <!-- Data Points -->
+                  <circle cx="70" cy="172" r="3.5" fill="#FFFFFF" stroke="#FF6F32" stroke-width="2"></circle>
+                  <circle cx="155" cy="160" r="3.5" fill="#FFFFFF" stroke="#FF6F32" stroke-width="2"></circle>
+                  <circle cx="240" cy="115" r="4" fill="#FFFFFF" stroke="#FF6F32" stroke-width="2"></circle>
+                  <circle cx="325" cy="128" r="4" fill="#FFFFFF" stroke="#FF6F32" stroke-width="2"></circle>
+                  <circle cx="495" cy="148" r="3.5" fill="#FFFFFF" stroke="#FF6F32" stroke-width="2"></circle>
+                  <circle cx="565" cy="158" r="3.5" fill="#FFFFFF" stroke="#FF6F32" stroke-width="2"></circle>
 
-                  <!-- Dates on X-axis -->
-                  <text x="100" y="254" class="chart-axis-text" text-anchor="middle">Nov 3</text>
-                  <text x="230" y="254" class="chart-axis-text" text-anchor="middle">Nov 4</text>
-                  <text x="360" y="254" class="chart-axis-text" text-anchor="middle">Nov 5</text>
-                  <text x="490" y="254" class="chart-axis-text" text-anchor="middle">Nov 6</text>
-                  <text x="620" y="254" class="chart-axis-text" text-anchor="middle">Nov 7</text>
-                  <text x="750" y="254" class="chart-axis-text" text-anchor="middle">Nov 8</text>
-                  <text x="860" y="254" class="chart-axis-text" text-anchor="middle">Nov 9 (Today)</text>
+                  <!-- Spike Highlight Point (09:21) -->
+                  <circle cx="410" cy="42" r="10" fill="rgba(255, 111, 50, 0.22)"></circle>
+                  <circle cx="410" cy="42" r="6" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2.5"></circle>
 
-                  <!-- Area fill under Catch Rate curve -->
-                  <polygon points="100,230 100,94 230,92 360,89 490,87 620,85 750,84 860,84 860,230" fill="url(#trendOrangeGrad)"></polygon>
-
-                  <!-- Catch Rate Line (Orange) -->
-                  <polyline points="100,94 230,92 360,89 490,87 620,85 750,84 860,84" fill="none" stroke="#FF6F32" stroke-width="3.5" stroke-linecap="round"></polyline>
-
-                  <!-- False Negatives Line (Dark) -->
-                  <polyline points="100,217 230,218 360,219 490,220 620,221 750,221 860,222" fill="none" stroke="#0C0C0C" stroke-width="2" stroke-dasharray="5,4"></polyline>
-
-                  <!-- False Positives Line (Muted Gray) -->
-                  <polyline points="100,226 230,227 360,227 490,228 620,228 750,229 860,229" fill="none" stroke="#888888" stroke-width="2"></polyline>
-
-                  <!-- Data Point Dots on Catch Rate -->
-                  <circle cx="100" cy="94" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
-                  <circle cx="230" cy="92" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
-                  <circle cx="360" cy="89" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
-                  <circle cx="490" cy="87" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
-                  <circle cx="620" cy="85" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
-                  <circle cx="750" cy="84" r="5" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2"></circle>
-                  <circle cx="860" cy="84" r="6" fill="#FF6F32" stroke="#FFFFFF" stroke-width="2.5"></circle>
-
-                  <!-- Callout Tag at Latest Point -->
-                  <rect x="790" y="55" width="85" height="22" rx="4" fill="#0C0C0C"></rect>
-                  <text x="832" y="70" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">82.4% Catch</text>
+                  <!-- Spike Callout Tag -->
+                  <rect x="345" y="10" width="130" height="22" rx="4" fill="#0C0C0C"></rect>
+                  <text x="410" y="24" fill="#FFFFFF" font-size="10.5" font-weight="700" text-anchor="middle">Spike: 38 pkts/s (UDP Amp)</text>
                 </svg>
               </div>
             </div>
           </div>
 
-          <!-- Section D: Incident Audit -->
-          <div class="reports-section">
-            <div class="reports-section-header">
-              <div>
-                <h3 class="reports-section-title">D. Incident Audit</h3>
-                <p class="reports-section-desc">Forensic event log of verified zero-day anomalies and mitigation actions taken.</p>
+          <!-- 4 & 5. BELOW ROW: Model Evaluation & Attack Category Breakdown -->
+          <div class="reports-two-col-grid">
+            <!-- 4. Model Evaluation (Circular Progress Indicators for Precision, Recall, FPR, Zero-Day Recall) -->
+            <div class="card reports-card reports-eval-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Model Evaluation</h3>
+                  <span class="card-subtitle">Verified detection performance metrics</span>
+                </div>
+                <span class="benchmark-badge">CIC-IDS2017 &amp; Telemetry</span>
               </div>
-              <div class="data-notice-pill">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-                <span>Live Telemetry & Evaluation Baseline</span>
+              <div class="eval-metrics-grid">
+                <!-- Precision -->
+                <div class="eval-metric-box">
+                  <div class="eval-ring-wrap">
+                    <svg class="eval-ring-svg" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="32" class="eval-ring-bg" />
+                      <circle cx="40" cy="40" r="32" class="eval-ring-fill" stroke="#FF6F32"
+                        stroke-dasharray="189 201" stroke-dashoffset="0" />
+                    </svg>
+                    <div class="eval-ring-text font-mono font-bold text-orange">94.2%</div>
+                  </div>
+                  <div class="eval-metric-info">
+                    <span class="eval-metric-name">Precision</span>
+                    <span class="eval-metric-desc">Low false alerts ratio</span>
+                  </div>
+                </div>
+
+                <!-- Recall -->
+                <div class="eval-metric-box">
+                  <div class="eval-ring-wrap">
+                    <svg class="eval-ring-svg" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="32" class="eval-ring-bg" />
+                      <circle cx="40" cy="40" r="32" class="eval-ring-fill" stroke="#0C0C0C"
+                        stroke-dasharray="184 201" stroke-dashoffset="0" />
+                    </svg>
+                    <div class="eval-ring-text font-mono font-bold">91.5%</div>
+                  </div>
+                  <div class="eval-metric-info">
+                    <span class="eval-metric-name">Recall</span>
+                    <span class="eval-metric-desc">Attack catch sensitivity</span>
+                  </div>
+                </div>
+
+                <!-- False Positive Rate -->
+                <div class="eval-metric-box">
+                  <div class="eval-ring-wrap">
+                    <svg class="eval-ring-svg" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="32" class="eval-ring-bg" />
+                      <circle cx="40" cy="40" r="32" class="eval-ring-fill" stroke="#10B981"
+                        stroke-dasharray="2 201" stroke-dashoffset="0" />
+                    </svg>
+                    <div class="eval-ring-text font-mono font-bold" style="color:#059669;">0.17%</div>
+                  </div>
+                  <div class="eval-metric-info">
+                    <span class="eval-metric-name">False Positive Rate</span>
+                    <span class="eval-metric-desc">Normal traffic passed</span>
+                  </div>
+                </div>
+
+                <!-- Zero-Day Recall -->
+                <div class="eval-metric-box">
+                  <div class="eval-ring-wrap">
+                    <svg class="eval-ring-svg" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="32" class="eval-ring-bg" />
+                      <circle cx="40" cy="40" r="32" class="eval-ring-fill" stroke="#FF6F32"
+                        stroke-dasharray="166 201" stroke-dashoffset="0" />
+                    </svg>
+                    <div class="eval-ring-text font-mono font-bold text-orange">82.4%</div>
+                  </div>
+                  <div class="eval-metric-info">
+                    <span class="eval-metric-name">Zero-Day Recall</span>
+                    <span class="eval-metric-desc">Unseen zero-day catch rate</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="card incident-audit-card">
-              <div class="incident-audit-toolbar">
-                <div class="search-input-wrap">
-                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                  <input type="text" id="input-audit-search" placeholder="Filter incidents by ID, attack type or IP..." class="table-search-input">
-                </div>
-                <div class="incident-counts-tag">
-                  Showing 6 of 6 audited events
+            <!-- 5. Attack Category Breakdown (Compact Horizontal Bar Chart) -->
+            <div class="card reports-card reports-category-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Attack Category Breakdown</h3>
+                  <span class="card-subtitle">Distribution across evaluated threat vectors</span>
                 </div>
               </div>
+              <div class="cat-bar-list">
+                <!-- DDoS -->
+                <div class="cat-bar-item">
+                  <div class="cat-bar-header">
+                    <div class="cat-bar-title-wrap">
+                      <span class="attack-badge badge-ddos">DDoS</span>
+                      <span class="cat-bar-name">DDoS Flood</span>
+                    </div>
+                    <span class="cat-bar-val font-mono">2 alerts • <strong>82.4%</strong> catch</span>
+                  </div>
+                  <div class="cat-bar-track">
+                    <div class="cat-bar-fill fill-orange" style="width: 82.4%;"></div>
+                  </div>
+                </div>
 
-              <div class="table-responsive">
-                <table class="report-table" id="table-incident-audit">
-                  <thead>
-                    <tr>
-                      <th>Incident ID</th>
-                      <th>Attack Type</th>
-                      <th>Source IP</th>
-                      <th>Risk Score</th>
-                      <th>Detection Timestamp</th>
-                      <th>Detection Status</th>
-                      <th class="text-right">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody id="audit-table-body">
-                    <tr>
-                      <td class="font-mono text-bold">INC-2026-8941</td>
-                      <td><span class="attack-badge badge-ddos">DDoS Flood</span></td>
-                      <td class="font-mono">192.168.1.45</td>
-                      <td><span class="severity-tag tag-critical">92 Critical</span></td>
-                      <td class="text-muted">Nov 9, 2026 • 09:01:12</td>
-                      <td><span class="status-pill status-quarantined">Blocked & Quarantined</span></td>
-                      <td class="text-right">
-                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="1">Inspect</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="font-mono text-bold">INC-2026-8940</td>
-                      <td><span class="attack-badge badge-web">WebAttack SQLi</span></td>
-                      <td class="font-mono">172.16.4.9</td>
-                      <td><span class="severity-tag tag-high">81 High</span></td>
-                      <td class="text-muted">Nov 9, 2026 • 09:05:40</td>
-                      <td><span class="status-pill status-quarantined">WAF Filter Drop</span></td>
-                      <td class="text-right">
-                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="2">Inspect</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="font-mono text-bold">INC-2026-8939</td>
-                      <td><span class="attack-badge badge-scan">PortScan Sweep</span></td>
-                      <td class="font-mono">10.0.0.17</td>
-                      <td><span class="severity-tag tag-medium">64 Medium</span></td>
-                      <td class="text-muted">Nov 9, 2026 • 09:03:22</td>
-                      <td><span class="status-pill status-ratelimited">Rate Limited</span></td>
-                      <td class="text-right">
-                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="3">Inspect</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="font-mono text-bold">INC-2026-8938</td>
-                      <td><span class="attack-badge badge-ddos">SYN Flood</span></td>
-                      <td class="font-mono">198.51.100.22</td>
-                      <td><span class="severity-tag tag-critical">89 Critical</span></td>
-                      <td class="text-muted">Nov 9, 2026 • 08:44:19</td>
-                      <td><span class="status-pill status-quarantined">Host Isolated</span></td>
-                      <td class="text-right">
-                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="1">Inspect</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="font-mono text-bold">INC-2026-8937</td>
-                      <td><span class="attack-badge badge-web">Zero-Day Payload</span></td>
-                      <td class="font-mono">203.0.113.88</td>
-                      <td><span class="severity-tag tag-high">76 High</span></td>
-                      <td class="text-muted">Nov 9, 2026 • 08:12:05</td>
-                      <td><span class="status-pill status-quarantined">Session Terminated</span></td>
-                      <td class="text-right">
-                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="2">Inspect</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="font-mono text-bold">INC-2026-8936</td>
-                      <td><span class="attack-badge badge-scan">Stealth Sweep</span></td>
-                      <td class="font-mono">192.168.10.104</td>
-                      <td><span class="severity-tag tag-medium">58 Medium</span></td>
-                      <td class="text-muted">Nov 9, 2026 • 07:55:31</td>
-                      <td><span class="status-pill status-ratelimited">Firewall Dropped</span></td>
-                      <td class="text-right">
-                        <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="3">Inspect</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <!-- WebAttack -->
+                <div class="cat-bar-item">
+                  <div class="cat-bar-header">
+                    <div class="cat-bar-title-wrap">
+                      <span class="attack-badge badge-web">WebAttack</span>
+                      <span class="cat-bar-name">WebAttack SQLi / XSS</span>
+                    </div>
+                    <span class="cat-bar-val font-mono">2 alerts • <strong>88.5%</strong> catch</span>
+                  </div>
+                  <div class="cat-bar-track">
+                    <div class="cat-bar-fill fill-orange" style="width: 88.5%;"></div>
+                  </div>
+                </div>
+
+                <!-- PortScan -->
+                <div class="cat-bar-item">
+                  <div class="cat-bar-header">
+                    <div class="cat-bar-title-wrap">
+                      <span class="attack-badge badge-scan">PortScan</span>
+                      <span class="cat-bar-name">PortScan Recon</span>
+                    </div>
+                    <span class="cat-bar-val font-mono">2 alerts • <strong>74.0%</strong> catch</span>
+                  </div>
+                  <div class="cat-bar-track">
+                    <div class="cat-bar-fill" style="width: 74.0%; background:#4B5563;"></div>
+                  </div>
+                </div>
+
+                <!-- Infiltration / Botnet -->
+                <div class="cat-bar-item">
+                  <div class="cat-bar-header">
+                    <div class="cat-bar-title-wrap">
+                      <span class="attack-badge badge-ddos">Infiltration</span>
+                      <span class="cat-bar-name">Kerberos / Botnet C2</span>
+                    </div>
+                    <span class="cat-bar-val font-mono">2 alerts • <strong>91.2%</strong> catch</span>
+                  </div>
+                  <div class="cat-bar-track">
+                    <div class="cat-bar-fill fill-orange" style="width: 91.2%;"></div>
+                  </div>
+                </div>
+
+                <!-- Benign Baseline -->
+                <div class="cat-bar-item">
+                  <div class="cat-bar-header">
+                    <div class="cat-bar-title-wrap">
+                      <span class="attack-badge badge-benign">Benign</span>
+                      <span class="cat-bar-name">Baseline Legitimate</span>
+                    </div>
+                    <span class="cat-bar-val font-mono">2 alerts • <strong>99.4%</strong> clean</span>
+                  </div>
+                  <div class="cat-bar-track">
+                    <div class="cat-bar-fill" style="width: 99.4%; background:#9CA3AF;"></div>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <!-- 6. BOTTOM ROW: Recent Incident Activity (Compact Activity Table) -->
+          <div class="card reports-card reports-activity-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Recent Incident Activity</h3>
+                <span class="card-subtitle">Latest verified threat detections and containment actions</span>
+              </div>
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="input-audit-search" placeholder="Search incidents by ID, vector or IP..." class="table-search-input">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="report-table" id="table-incident-audit">
+                <thead>
+                  <tr>
+                    <th>Incident ID</th>
+                    <th>Threat Vector</th>
+                    <th>Severity</th>
+                    <th>Source IP</th>
+                    <th>Date / Time</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-table-body">
+                  <tr>
+                    <td class="font-mono text-bold">INC-2026-8941</td>
+                    <td><span class="attack-badge badge-ddos">DDoS Flood</span></td>
+                    <td><span class="severity-tag tag-critical">Critical</span></td>
+                    <td class="font-mono">192.168.1.45</td>
+                    <td class="text-muted">Nov 9, 2026 • 09:01:12</td>
+                    <td><span class="status-pill status-quarantined">Blocked &amp; Quarantined</span></td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="1">Inspect &rarr;</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-bold">INC-2026-8940</td>
+                    <td><span class="attack-badge badge-web">WebAttack SQLi</span></td>
+                    <td><span class="severity-tag tag-high">High</span></td>
+                    <td class="font-mono">172.16.4.9</td>
+                    <td class="text-muted">Nov 9, 2026 • 09:05:40</td>
+                    <td><span class="status-pill status-quarantined">WAF Intercept</span></td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="2">Inspect &rarr;</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-bold">INC-2026-8939</td>
+                    <td><span class="attack-badge badge-scan">PortScan Sweep</span></td>
+                    <td><span class="severity-tag tag-medium">Medium</span></td>
+                    <td class="font-mono">10.0.0.17</td>
+                    <td class="text-muted">Nov 9, 2026 • 09:03:22</td>
+                    <td><span class="status-pill status-ratelimited">Rate Limited</span></td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="3">Inspect &rarr;</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-bold">INC-2026-8938</td>
+                    <td><span class="attack-badge badge-ddos">Infiltration</span></td>
+                    <td><span class="severity-tag tag-high">High</span></td>
+                    <td class="font-mono">10.0.2.14</td>
+                    <td class="text-muted">Nov 9, 2026 • 09:10:18</td>
+                    <td><span class="status-pill status-quarantined">Blocked &amp; Quarantined</span></td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="5">Inspect &rarr;</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-bold">INC-2026-8937</td>
+                    <td><span class="attack-badge badge-scan">Botnet C2</span></td>
+                    <td><span class="severity-tag tag-critical">Critical</span></td>
+                    <td class="font-mono">203.0.113.195</td>
+                    <td class="text-muted">Nov 9, 2026 • 09:12:44</td>
+                    <td><span class="status-pill status-quarantined">Blocked &amp; Quarantined</span></td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="6">Inspect &rarr;</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-bold">INC-2026-8936</td>
+                    <td><span class="attack-badge badge-ddos">UDP Amp Spike</span></td>
+                    <td><span class="severity-tag tag-critical">Critical</span></td>
+                    <td class="font-mono">192.0.2.44</td>
+                    <td class="text-muted">Nov 9, 2026 • 09:21:19</td>
+                    <td><span class="status-pill status-quarantined">Blocked &amp; Quarantined</span></td>
+                    <td class="text-right">
+                      <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="9">Inspect &rarr;</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>

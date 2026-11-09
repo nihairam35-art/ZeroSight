@@ -692,6 +692,7 @@
       renderSimHistory();
       el.contentSimulator.classList.add('active');
     } else if (targetView === 'reports' && el.contentReports) {
+      renderReports();
       el.contentReports.classList.add('active');
     } else if (targetView === 'settings' && el.contentSettings) {
       el.contentSettings.classList.add('active');
@@ -724,22 +725,32 @@
     if (!el.alertsQueueTbody) return;
 
     // 1. Calculate and update pill count numbers
-    const total = state.alerts.length;
     const critCount = state.alerts.filter(a => a.severity.toLowerCase() === 'critical').length;
     const highCount = state.alerts.filter(a => a.severity.toLowerCase() === 'high').length;
     const medCount = state.alerts.filter(a => a.severity.toLowerCase() === 'medium').length;
     const lowCount = state.alerts.filter(a => a.severity.toLowerCase() === 'low').length;
 
-    if (el.pillCntAll) el.pillCntAll.textContent = total;
     if (el.pillCntCritical) el.pillCntCritical.textContent = critCount;
     if (el.pillCntHigh) el.pillCntHigh.textContent = highCount;
     if (el.pillCntMedium) el.pillCntMedium.textContent = medCount;
     if (el.pillCntLow) el.pillCntLow.textContent = lowCount;
 
+    // Sync active state on severity filter pills
+    if (el.filterPills) {
+      el.filterPills.forEach(p => {
+        const sev = p.getAttribute('data-severity');
+        if (state.alertsFilter.severity === sev) {
+          p.classList.add('active-pill');
+        } else {
+          p.classList.remove('active-pill');
+        }
+      });
+    }
+
     // 2. Filter alerts
     let filtered = state.alerts.filter(alert => {
-      // Severity Pill filter
-      if (state.alertsFilter.severity !== 'all') {
+      // Severity Pill filter: Critical, High, Medium, Low
+      if (state.alertsFilter.severity && state.alertsFilter.severity !== 'all') {
         if (alert.severity.toLowerCase() !== state.alertsFilter.severity) return false;
       }
       // Threat Category filter
@@ -1341,6 +1352,109 @@
   }
 
   // =========================================================================
+  // PAGE 7: THREAT & EVALUATION REPORTS ENGINE
+  // =========================================================================
+  function renderReports() {
+    const total = state.alerts.length;
+    const critCount = state.alerts.filter(a => a.severity.toLowerCase() === 'critical').length;
+    const highCount = state.alerts.filter(a => a.severity.toLowerCase() === 'high').length;
+    const medCount = state.alerts.filter(a => a.severity.toLowerCase() === 'medium').length;
+    const lowCount = state.alerts.filter(a => a.severity.toLowerCase() === 'low').length;
+
+    // 1. Security Overview Cards
+    const elTotal = document.getElementById('rep-overview-total');
+    const elCrit = document.getElementById('rep-overview-critical');
+    const elRate = document.getElementById('rep-overview-rate');
+    if (elTotal) elTotal.textContent = total;
+    if (elCrit) elCrit.textContent = critCount;
+    if (elRate) elRate.textContent = '82.4%';
+
+    // 2. Threat Severity Donut Numbers
+    const elDonutTotal = document.getElementById('rep-donut-total-num');
+    const elLegCrit = document.getElementById('rep-legend-crit-cnt');
+    const elLegHigh = document.getElementById('rep-legend-high-cnt');
+    const elLegMed = document.getElementById('rep-legend-med-cnt');
+    const elLegLow = document.getElementById('rep-legend-low-cnt');
+
+    if (elDonutTotal) elDonutTotal.textContent = total;
+    if (elLegCrit) elLegCrit.textContent = critCount;
+    if (elLegHigh) elLegHigh.textContent = highCount;
+    if (elLegMed) elLegMed.textContent = medCount;
+    if (elLegLow) elLegLow.textContent = lowCount;
+
+    // Dynamically calculate Donut SVG stroke-dasharray if total > 0
+    if (total > 0) {
+      const circ = 390;
+      const cArc = Math.round((critCount / total) * circ);
+      const hArc = Math.round((highCount / total) * circ);
+      const mArc = Math.round((medCount / total) * circ);
+      const lArc = circ - cArc - hArc - mArc;
+
+      const segCrit = document.getElementById('rep-donut-crit');
+      const segHigh = document.getElementById('rep-donut-high');
+      const segMed = document.getElementById('rep-donut-med');
+      const segLow = document.getElementById('rep-donut-low');
+
+      if (segCrit) {
+        segCrit.setAttribute('stroke-dasharray', `${cArc} ${circ}`);
+        segCrit.setAttribute('stroke-dashoffset', '0');
+      }
+      if (segHigh) {
+        segHigh.setAttribute('stroke-dasharray', `${hArc} ${circ}`);
+        segHigh.setAttribute('stroke-dashoffset', `-${cArc}`);
+      }
+      if (segMed) {
+        segMed.setAttribute('stroke-dasharray', `${mArc} ${circ}`);
+        segMed.setAttribute('stroke-dashoffset', `-${cArc + hArc}`);
+      }
+      if (segLow) {
+        segLow.setAttribute('stroke-dasharray', `${lArc} ${circ}`);
+        segLow.setAttribute('stroke-dashoffset', `-${cArc + hArc + mArc}`);
+      }
+    }
+
+    // 3. Populate Recent Incident Activity Table
+    const tbody = document.getElementById('audit-table-body');
+    if (tbody) {
+      const categoryBadgeClass = {
+        DDoS: 'badge-ddos',
+        WebAttack: 'badge-web',
+        PortScan: 'badge-scan',
+        Infiltration: 'badge-ddos',
+        Botnet: 'badge-scan',
+        Benign: 'badge-benign'
+      };
+
+      const statusPillClass = {
+        'Blocked & Quarantined': 'status-quarantined',
+        'WAF Intercept': 'status-quarantined',
+        'Rate Limited': 'status-ratelimited',
+        'Baseline Anomaly': 'status-baseline'
+      };
+
+      tbody.innerHTML = state.alerts.map(a => {
+        const badgeCls = categoryBadgeClass[a.category] || 'badge-ddos';
+        const statusCls = statusPillClass[a.status] || 'status-quarantined';
+        const sevLower = a.severity.toLowerCase();
+
+        return `
+          <tr>
+            <td class="font-mono text-bold">INC-2026-${String(a.id).padStart(4, '0')}</td>
+            <td><span class="attack-badge ${badgeCls}">${a.type}</span></td>
+            <td><span class="severity-tag tag-${sevLower}">${a.severity}</span></td>
+            <td class="font-mono">${a.ip}</td>
+            <td class="text-muted">${a.timestamp} • ${a.timeExact}</td>
+            <td><span class="status-pill ${statusCls}">${a.status}</span></td>
+            <td class="text-right">
+              <button class="btn btn-sm btn-outline btn-audit-inspect" data-alert-id="${a.id}">Inspect &rarr;</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+  }
+
+  // =========================================================================
   // INITIALIZE EVENT LISTENERS
   // =========================================================================
   function initEvents() {
@@ -1494,13 +1608,19 @@
       el.btnInsightsReport.addEventListener('click', () => navigateTo('reports'));
     }
 
-    // 4. Alerts Queue Controls & Filters
+    // 4. Alerts Queue Controls & Filters (Critical, High, Medium, Low Clickable Filters)
     if (el.filterPills) {
       el.filterPills.forEach(pill => {
         pill.addEventListener('click', () => {
-          el.filterPills.forEach(p => p.classList.remove('active-pill'));
-          pill.classList.add('active-pill');
-          state.alertsFilter.severity = pill.getAttribute('data-severity') || 'all';
+          const targetSev = pill.getAttribute('data-severity');
+          if (!targetSev) return;
+          if (state.alertsFilter.severity === targetSev) {
+            // Toggle off: deselect pill, return to full queue
+            state.alertsFilter.severity = 'all';
+          } else {
+            // Activate selected severity
+            state.alertsFilter.severity = targetSev;
+          }
           renderAlertsQueue();
         });
       });
@@ -2168,6 +2288,7 @@
     renderSimulator();
     renderSimHistory();
     renderTicketsHistory();
+    renderReports();
 
     // Route according to URL hash
     const hash = window.location.hash.replace('#', '').trim();

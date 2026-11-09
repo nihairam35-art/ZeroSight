@@ -51,11 +51,15 @@ test('Index.html: Stationary App Shell layout present', () => {
 });
 
 test('Index.html: Threat Alerts filter controls exist', () => {
-  assert(html.includes('id="select-category-filter"'), 'Missing #select-category-filter');
-  assert(html.includes('id="select-status-filter"'), 'Missing #select-status-filter');
   assert(html.includes('id="select-sort-alerts"'), 'Missing #select-sort-alerts');
   assert(html.includes('id="input-alerts-filter"'), 'Missing #input-alerts-filter');
-  assert(html.includes('id="pill-cnt-all"'), 'Missing #pill-cnt-all');
+  assert(html.includes('id="pill-cnt-critical"'), 'Missing #pill-cnt-critical');
+  assert(html.includes('id="pill-cnt-high"'), 'Missing #pill-cnt-high');
+  assert(html.includes('id="pill-cnt-medium"'), 'Missing #pill-cnt-medium');
+  assert(html.includes('id="pill-cnt-low"'), 'Missing #pill-cnt-low');
+  assert(!html.includes('id="pill-cnt-all"'), 'pill-cnt-all should be removed');
+  assert(!html.includes('id="select-category-filter"'), 'select-category-filter should be removed');
+  assert(!html.includes('id="select-status-filter"'), 'select-status-filter should be removed');
 });
 
 test('Index.html: Alert Details dynamic containers exist', () => {

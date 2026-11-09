@@ -2649,165 +2649,355 @@ ul, ol {
   padding: 20px;
 }
 
-/* Reports Sections & Grids */
-.reports-section {
-  margin-top: 28px;
-}
+/* ==========================================================================
+   REPORTS VIEW: VISUAL-FIRST CYBERSECURITY DASHBOARD
+   ========================================================================== */
 
-.reports-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.reports-section-title {
-  font-size: 16px;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.015em;
-  margin-bottom: 4px;
-}
-
-.reports-section-desc {
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
-
-.benchmark-badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 999px;
-  color: #FFFFFF;
-}
-
-.model-perf-grid {
+/* 1. Security Overview Grid */
+.reports-overview-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  margin-bottom: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
 }
 
-.perf-stat-card {
+.rep-overview-card {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  gap: 6px;
   min-width: 0;
 }
 
-.perf-metric-header {
+.rep-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
 }
 
-.perf-metric-label {
-  font-size: 12px;
+.rep-card-label {
+  font-size: 13px;
   font-weight: 600;
   color: var(--card-text-muted);
 }
 
-.perf-metric-tag {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 4px;
+.rep-card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
   background: var(--card-inner-surface);
-  color: var(--card-text-muted);
   border: 1px solid var(--card-inner-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--card-text-primary);
 }
 
-.perf-metric-value {
+.rep-card-icon.icon-critical {
+  background: rgba(255, 111, 50, 0.12);
+  border-color: rgba(255, 111, 50, 0.3);
+  color: var(--signature-orange);
+}
+
+.rep-card-icon.icon-rate {
+  background: rgba(255, 111, 50, 0.08);
+  border-color: rgba(255, 111, 50, 0.2);
+  color: var(--signature-orange);
+}
+
+.rep-card-value {
   font-size: 32px;
   font-weight: 800;
-  font-family: var(--font-mono);
-  color: var(--card-text-primary);
   line-height: 1.1;
-  margin-bottom: 10px;
+  color: var(--card-text-primary);
 }
 
-.perf-progress-bar {
-  width: 100%;
-  height: 6px;
-  background-color: var(--card-inner-border);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.perf-progress-fill {
-  height: 100%;
-  background-color: var(--primary-black);
-  border-radius: 999px;
-  transition: width 0.6s ease;
-}
-
-.perf-progress-fill.fill-orange {
-  background-color: var(--signature-orange);
-}
-
-.perf-metric-desc {
-  font-size: 11.5px;
+.rep-card-sub {
+  font-size: 12px;
   color: var(--card-text-subtle);
   line-height: 1.4;
 }
 
-/* Confusion Matrix Card */
-.perf-matrix-card {
-  padding: 20px 24px;
-}
-
-.perf-matrix-auc {
-  font-size: 12px;
-  font-family: var(--font-mono);
-  color: var(--card-text-muted);
-}
-
-.perf-matrix-auc strong {
-  color: var(--signature-orange);
-  font-weight: 800;
-}
-
-.matrix-grid {
+/* 2-Column Reports Rows */
+.reports-two-col-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 14px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
 }
 
-.matrix-box {
-  padding: 14px;
-  background-color: var(--card-inner-surface);
+.reports-card {
+  padding: 22px;
+}
+
+/* Donut Chart Component */
+.rep-donut-body {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 10px;
+}
+
+.rep-donut-visual-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.rep-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.rep-legend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.rep-legend-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rep-legend-name {
+  color: var(--card-text-primary);
+  font-weight: 600;
+}
+
+.rep-legend-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rep-legend-count {
+  color: var(--card-text-muted);
+  font-size: 12.5px;
+}
+
+.rep-legend-pct {
+  font-weight: 700;
+  font-size: 13px;
+  min-width: 38px;
+  text-align: right;
+}
+
+/* Detection Trends Chart */
+.trend-spike-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 111, 50, 0.12);
+  border: 1px solid rgba(255, 111, 50, 0.35);
+  color: var(--signature-orange);
+}
+
+.trend-spike-badge .spike-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signature-orange);
+  box-shadow: 0 0 8px rgba(255, 111, 50, 0.8);
+}
+
+.rep-trend-chart-wrap {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.rep-trend-svg {
+  width: 100%;
+  height: 190px;
+  display: block;
+}
+
+.chart-axis-text {
+  font-size: 11px;
+  fill: var(--card-text-muted);
+  font-family: var(--font-sans);
+}
+
+/* Model Evaluation Circular Progress Rings */
+.eval-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.eval-metric-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--card-inner-surface);
   border: 1px solid var(--card-inner-border);
   border-radius: var(--radius-md);
   min-width: 0;
 }
 
-.matrix-label {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--card-text-muted);
-  margin-bottom: 4px;
+.eval-ring-wrap {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
 }
 
-.matrix-value {
-  font-size: 24px;
-  font-weight: 800;
-  font-family: var(--font-mono);
+.eval-ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.eval-ring-bg {
+  fill: none;
+  stroke: rgba(12, 12, 12, 0.08);
+  stroke-width: 7;
+}
+
+.eval-ring-fill {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.eval-ring-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  text-align: center;
+}
+
+.eval-metric-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.eval-metric-name {
+  font-size: 13px;
+  font-weight: 700;
   color: var(--card-text-primary);
-  line-height: 1.1;
 }
 
-.matrix-sub {
+.eval-metric-desc {
   font-size: 11px;
   color: var(--card-text-subtle);
-  margin-top: 4px;
+  line-height: 1.35;
+}
+
+/* Attack Category Horizontal Bars */
+.cat-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.cat-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cat-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cat-bar-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-bar-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--card-text-primary);
+}
+
+.cat-bar-val {
+  font-size: 12px;
+  color: var(--card-text-muted);
+}
+
+.cat-bar-track {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--card-inner-surface);
+  border: 1px solid var(--card-inner-border);
+  overflow: hidden;
+}
+
+.cat-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width var(--transition-normal);
+}
+
+.cat-bar-fill.fill-orange {
+  background-color: var(--signature-orange);
+}
+
+/* Recent Incident Activity */
+.reports-activity-card {
+  padding: 22px;
+}
+
+.reports-activity-card .btn-audit-inspect {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(12, 12, 12, 0.25);
+  color: var(--primary-black);
+  background-color: rgba(12, 12, 12, 0.03);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.reports-activity-card .btn-audit-inspect:hover {
+  background-color: var(--signature-orange);
+  color: var(--pure-white);
+  border-color: var(--signature-orange);
+}
+
+[data-card-style="dark"] .reports-activity-card .btn-audit-inspect {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--pure-white);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-card-style="dark"] .reports-activity-card .btn-audit-inspect:hover {
+  background-color: var(--signature-orange);
+  color: var(--pure-white);
+  border-color: var(--signature-orange);
+}
+
+.incident-counts-tag {
+  font-size: 12px;
+  color: var(--card-text-muted);
 }
 
 /* Report Table */
@@ -2931,77 +3121,6 @@ ul, ol {
   font-weight: 600;
 }
 
-/* Detection Trends Chart */
-.trend-chart-card {
-  padding: 24px;
-}
-
-.trend-legends {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.legend-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--card-text-muted);
-  font-weight: 500;
-}
-
-.legend-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot-orange {
-  background-color: var(--signature-orange);
-}
-
-.dot-dark {
-  background-color: var(--primary-black);
-}
-
-.dot-gray {
-  background-color: #888888;
-}
-
-.trend-chart-container {
-  width: 100%;
-  min-height: 240px;
-}
-
-.trend-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.chart-axis-text {
-  font-size: 11px;
-  fill: var(--card-text-muted);
-  font-family: var(--font-sans);
-}
-
-/* Incident Audit */
-.incident-audit-card {
-  padding: 20px;
-}
-
-.incident-audit-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-
 .table-search-input {
   padding: 8px 12px 8px 34px;
   border: 1px solid var(--card-inner-border);
@@ -3017,23 +3136,6 @@ ul, ol {
 .table-search-input:focus {
   outline: none;
   border-color: var(--signature-orange);
-}
-
-.incident-counts-tag {
-  font-size: 12px;
-  color: var(--card-text-muted);
-}
-
-.data-notice-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -4660,5 +4762,18 @@ body[data-card-style="dark"] .support-status-banner {
   }
   .timeline-trail::before {
     left: 13px;
+  }
+  .reports-overview-grid {
+    grid-template-columns: 1fr;
+  }
+  .reports-two-col-grid {
+    grid-template-columns: 1fr;
+  }
+  .rep-donut-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .eval-metrics-grid {
+    grid-template-columns: 1fr;
   }
 }

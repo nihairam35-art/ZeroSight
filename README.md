@@ -93,33 +93,20 @@ Complete documentation packages are available for backend developers integrating
 - **Security Insights Banner**:
   - Actionable insights summary with "View detailed report" button.
 
-### Page 4 — Threat Alerts Queue / Dark SOC Command Center (`content-alerts`)
-- **Visual Direction**: Premium Dark SOC Command Center interface built with dark charcoal surfaces (`#141414`), subtle borders (`#262626`), high-contrast typography, and Signature Orange (`#FF6F32`) accents adhering strictly to the official brand palette.
-- **Header**: "Threat Intelligence Center" title, descriptive subtitle, pulsing live anomaly ingress pill, and "Refresh Stream" action.
-- **Compact Threat Summary Grid**:
-  - Total Alerts (`10`) — active neural telemetry stream.
-  - Critical Threats (`3`) — autonomous containment tier with orange accent.
-  - High-Risk Alerts (`2`) — priority investigation queue.
-  - Highest Risk Score (`96 / 100`) with dynamic threat metadata (`DDoS UDP Amp · 192.0.2.44`).
-- **Dark SOC Filter & Search Bar**:
-  - Severity quick-filter pills: `All Alerts (10)`, `Critical (3)`, `High (2)`, `Medium (2)`, `Low (3)` with live count badges.
-  - Threat Vector Dropdown: Filter by DDoS, WebAttack, PortScan, Infiltration, Botnet, or Benign flows.
-  - Mitigation Status Dropdown: Filter by Blocked & Quarantined, WAF Intercept, Rate Limited, or Baseline Anomaly.
-  - Sort Dropdown: Sort by Risk Score (High → Low, Low → High), Timestamp (Newest / Oldest), or Severity Tier.
-  - Live Text Search: Real-time search bar filtering across alert IDs, threat vectors, source IPs, and mitigation statuses.
-- **Active Threat Stream**:
-  - Replaces generic white tables with a vertical stream of dark charcoal cards (`#141414`).
-  - Severity indicator left borders (Critical: `#FF6F32`, High: `#8E8E93`, Medium: `#48484A`, Low: `#2C2C2E`).
-  - Each card displays Alert ID, Threat vector, Category badge, Severity tag, Monospaced risk score (`/ 100`), Source IP, Detection time, Mitigation status pill, Top neural anomaly summary, and Quick Inspect / Full Details actions.
-  - Selected state features glowing orange borders and focused background elevation.
-- **Dedicated Selected Alert Investigation Panel**:
-  - Sticky right-side desktop panel (~420px width) displaying deep forensic telemetry for the active alert.
-  - 2x2 Telemetry Grid: Composite Risk, Severity Tier, Source Host, and Mitigation Status.
-  - Neural Detection Signals: Visual progress bars filled in Signature Orange (`#FF6F32`) with anomaly percentages.
-  - Recommended Response Playbook: Interactive SOP checklist items with execution toggle buttons.
-  - Correlated Host Incidents: Past 24h threat history associated with the source IP.
-  - Primary CTA Button: "Launch Full Alert Details View →" linking directly to Page 5.
-- **Responsive Architecture**: Adapts seamlessly from 2-column desktop (1920px, 1440px) to laptop (1366px), tablet (1024px, 768px), and stacked mobile stream (375px) with zero horizontal overflow and no whole-window scrolling.
+### Page 4 — Threat Alerts Queue (`content-alerts`)
+- **Visual Direction**: High-contrast white table interface inside a large card container (`.card.alerts-queue-card`), adhering strictly to the official 60/30/10 brand palette (60% deep black shell, 30% clean white table card, 10% signature orange accents).
+- **Header**: "Threat Alerts Queue" title, descriptive subtitle, and "Refresh Stream" action button.
+- **Severity Filters**:
+  - Four distinct severity quick-filter options: **Critical** (`3`), **High** (`2`), **Medium** (`3`), and **Low** (`2`).
+  - Clickable filters with active highlight and toggle capability (clicking active pill resets to full queue).
+- **Risk Score Sorting & Search**:
+  - Sort dropdown: Default **Risk Score (High → Low)**, supporting Risk Score (Low → High), Timestamp (Newest / Oldest), and Severity Tier.
+  - Live search input: Instant query filtering across Alert IDs, source IPs, and threat vectors.
+- **Alerts Queue Table**:
+  - Columns: Alert ID, Severity, Threat Vector, Source IP, Risk Score, Detection Time, Status, and Action.
+  - Retains all 10 cyber threat detection records with accurate metadata and status badges.
+  - Dedicated "Investigate →" action button navigating directly to Alert Details (Page 5).
+- **Responsive Architecture**: Fits cleanly on desktop (1920px, 1440px), laptop (1366px), tablet (1024px, 768px), and mobile (375px) with responsive horizontal scrolling within `.table-responsive` and zero whole-application window scrolling.
 
 ### Page 5 — Alert Details (`content-alert-details`)
 - Breadcrumbs: `Alerts / Alert 1` with `Back to alerts` navigation.
@@ -139,31 +126,33 @@ Complete documentation packages are available for backend developers integrating
 - Live alert feed table and Caught vs. Missed visualization.
 
 ### Page 7 — Threat & Evaluation Reports (`content-reports`)
-- **Executive Threat Summary**:
-  - Nov 9, 2026 evaluation period with verified attack vectors badge.
-  - Zero-Day Catch Rate: `82.4%` (vs baseline signature-only 54.0%, +28.4% gain).
-  - Mean Time to Detect (MTTD): `4.2s` (sub-second anomaly alert).
-  - Autonomous Mitigations: `9 / 9` (100% critical threat vectors contained).
-- **Section A: Model Performance**:
-  - Accuracy: `96.8%` (Validation dataset of 15,000 flows).
-  - Precision: `94.2%` (True zero-day attack ratio vs benign noise).
-  - Recall: `91.5%` (Threat capture sensitivity preventing lateral movement).
-  - F1 Score: `92.8%` (Harmonic balance of precision and recall).
-  - Confusion Matrix & Statistical Breakdown: TP (`410`), FP (`25`), TN (`14,527`), FN (`38`), and ROC-AUC (`0.978`).
-- **Section B: Attack Detection Analysis**:
-  - DDoS Flood: 82.4% catch rate, 410/500 caught, 92 Critical, 3.8ms latency, High Generalization status.
-  - WebAttack SQLi: 88.5% catch rate, 177/200 caught, 81 High, 4.1ms latency, Confirmed Pattern status.
-  - PortScan Recon: 74.0% catch rate, 370/500 caught, 64 Medium, 2.9ms latency, Active Containment status.
-  - Benign Traffic: 99.4% accuracy, 14,210/14,300 passed, 8 Low, 1.8ms latency, Baseline Stable status.
-- **Section C: Detection Trends (Past 7 Days)**:
-  - Interactive SVG line chart plotting daily progression (Nov 3 to Nov 9) of Catch Rate (78.5% -> 82.4%), False Positives (1.4% -> 0.5%), and False Negatives (5.2% -> 3.2%).
-- **Section D: Incident Audit**:
-  - Live filterable table with search bar by incident ID, attack type, or IP.
-  - Telemetry source disclosure identifying combined live simulation telemetry and benchmark audit logs.
-  - Interactive "Inspect" button on every incident that links directly into the forensic Alert Details view.
-- **Section E: Functional Export Suite**:
-  - **Export PDF Report**: Opens the formal Executive Audit Report modal with printable letterhead, performance tables, analyst signoff, and `@media print` support (`window.print()`).
-  - **Export JSON**: Generates and downloads a complete `ZeroSight_Threat_Report_Nov9_2026.json` data blob.
+- **1. Security Overview**:
+  - Compact top summary row featuring live telemetry metric cards:
+    - **Total Alerts**: `10` active intrusion events.
+    - **Critical Alerts**: `3` high-priority threats requiring isolation.
+    - **Detection Rate**: `82.4%` zero-day benchmark generalization rate.
+- **2. Threat Severity Distribution**:
+  - Clean SVG Donut Chart dynamically computing segment arc ratios for all 4 severity tiers:
+    - **Critical**: 3 alerts (`30%`)
+    - **High**: 2 alerts (`20%`)
+    - **Medium**: 3 alerts (`30%`)
+    - **Low**: 2 alerts (`20%`)
+  - Integrated center total counter and color-coded severity legend.
+- **3. Detection Trends**:
+  - Area/Line chart with gradient fill and readable timestamps (08:00 to Now).
+  - Prominent spike annotation marking the 09:21 UTC UDP Amplification volumetric anomaly (`Spike: 38 pkts/s`).
+- **4. Model Evaluation & Category Breakdown**:
+  - **Model Evaluation Rings**: Circular progress rings displaying verified detection performance metrics:
+    - **Precision**: `94.2%`
+    - **Recall**: `91.5%`
+    - **False Positive Rate**: `0.17%`
+    - **Zero-Day Recall**: `82.4%`
+  - **Attack Category Breakdown**: Compact horizontal bar comparison chart across evaluated threat vectors (DDoS, WebAttack, PortScan, Infiltration, Benign).
+- **5. Recent Incident Activity**:
+  - Streamlined incident table displaying verified detections from `state.alerts` with search input and live "Inspect &rarr;" buttons routing directly to the forensic Alert Details view.
+- **6. Export Suite**:
+  - **Export PDF Report**: Opens the formal Executive Audit Report modal with printable letterhead and print support.
+  - **Export JSON**: Generates and downloads the `ZeroSight_Threat_Report_Nov9_2026.json` data blob.
 
 ### Page 8 — SOC Settings & Configuration (`content-settings`)
 - **Layout Overflow Fixed**: Horizontal clipping completely resolved using responsive grid containers (`minmax(0, 1fr)`) that collapse gracefully across all device widths.

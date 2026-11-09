@@ -13,12 +13,12 @@ const args = [
   '--allow-file-access-from-files',
   '--disable-web-security',
   '--dump-dom',
-  '--virtual-time-budget=15000',
+  '--virtual-time-budget=25000',
   targetUrl
 ];
 
 try {
-  const output = execFileSync(chromeExe, args, { encoding: 'utf-8', timeout: 30000 });
+  const output = execFileSync(chromeExe, args, { encoding: 'utf-8', timeout: 35000 });
   const match = output.match(/<div id="audit-json-output">([\s\S]*?)<\/div>/);
   if (match) {
     const data = JSON.parse(match[1]);

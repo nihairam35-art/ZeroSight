@@ -282,41 +282,63 @@
           record('FAIL', '5. Threat Alerts Queue', 'Dataset Volume', `Expected 10 alerts, found ${totalRows}`);
         }
 
-        // 5.4 Pill filtering
+        // 5.4 Simplified 4 Severity Pills & Accurate Counts
+        const pillAll = doc.querySelector('.filter-pill[data-severity="all"]');
         const pillCrit = doc.querySelector('.filter-pill[data-severity="critical"]');
+        const pillHigh = doc.querySelector('.filter-pill[data-severity="high"]');
+        const pillMed = doc.querySelector('.filter-pill[data-severity="medium"]');
+        const pillLow = doc.querySelector('.filter-pill[data-severity="low"]');
+
+        const cntCrit = doc.getElementById('pill-cnt-critical').textContent.trim();
+        const cntHigh = doc.getElementById('pill-cnt-high').textContent.trim();
+        const cntMed = doc.getElementById('pill-cnt-medium').textContent.trim();
+        const cntLow = doc.getElementById('pill-cnt-low').textContent.trim();
+
+        if (pillAll === null && pillCrit && pillHigh && pillMed && pillLow &&
+            cntCrit === '3' && cntHigh === '2' && cntMed === '3' && cntLow === '2') {
+          record('PASS', '5. Threat Alerts Queue', '4 Severity Options & Accurate Counts', 'Removed All Alerts; Critical (3), High (2), Medium (3), Low (2) verified');
+        } else {
+          record('FAIL', '5. Threat Alerts Queue', '4 Severity Options & Accurate Counts', 'Severity options or counts do not match expected values');
+        }
+
+        // 5.5 Clickable Severity Filtering & Toggle
         pillCrit.click();
         const critRows = doc.querySelectorAll('#alerts-queue-tbody tr').length;
-        const pillAll = doc.querySelector('.filter-pill[data-severity="all"]');
-        pillAll.click();
-        if (critRows === 3) {
-          record('PASS', '5. Threat Alerts Queue', 'Severity Quick-Pills Filter', 'Critical pill accurately filtered 3 critical alerts');
+        // Click Critical again to toggle off
+        pillCrit.click();
+        const toggledBackRows = doc.querySelectorAll('#alerts-queue-tbody tr').length;
+        // Click High
+        pillHigh.click();
+        const highRows = doc.querySelectorAll('#alerts-queue-tbody tr').length;
+        // Reset to all by clicking High again
+        pillHigh.click();
+
+        if (critRows === 3 && toggledBackRows === 10 && highRows === 2) {
+          record('PASS', '5. Threat Alerts Queue', 'Clickable Severity Filters & Toggle', 'Critical filtered 3 rows, toggle restored 10, High filtered 2 rows');
         } else {
-          record('FAIL', '5. Threat Alerts Queue', 'Severity Quick-Pills Filter', `Expected 3 critical rows, got ${critRows}`);
+          record('FAIL', '5. Threat Alerts Queue', 'Clickable Severity Filters & Toggle', `Filter mismatch: critRows=${critRows}, toggledBackRows=${toggledBackRows}, highRows=${highRows}`);
         }
 
-        // 5.5 Category dropdown
+        // 5.6 Unnecessary Redundant Filters Removed
         const catSel = doc.getElementById('select-category-filter');
-        catSel.value = 'PortScan';
-        catSel.dispatchEvent(new Event('change'));
-        const portRows = doc.querySelectorAll('#alerts-queue-tbody tr').length;
-        catSel.value = 'all';
-        catSel.dispatchEvent(new Event('change'));
-        if (portRows === 2) {
-          record('PASS', '5. Threat Alerts Queue', 'Threat Vector Category Dropdown', 'PortScan filter accurately isolated 2 port sweep incidents');
+        const statusSel = doc.getElementById('select-status-filter');
+        if (catSel === null && statusSel === null) {
+          record('PASS', '5. Threat Alerts Queue', 'Unnecessary Sections Removed', 'Duplicate Threat Vectors & Mitigation Status dropdowns cleanly removed');
         } else {
-          record('FAIL', '5. Threat Alerts Queue', 'Threat Vector Category Dropdown', `Expected 2 PortScan rows, got ${portRows}`);
+          record('FAIL', '5. Threat Alerts Queue', 'Unnecessary Sections Removed', 'Duplicate dropdowns still present in DOM');
         }
 
-        // 5.6 Sorting
+        // 5.7 Sorting (Default: Risk High->Low, Supports Risk Low->High)
         const sortSel = doc.getElementById('select-sort-alerts');
+        const defaultScore = doc.querySelector('#alerts-queue-tbody tr:first-child td:nth-child(5)').textContent;
         sortSel.value = 'risk-asc';
         sortSel.dispatchEvent(new Event('change'));
         const ascScore = doc.querySelector('#alerts-queue-tbody tr:first-child td:nth-child(5)').textContent;
         sortSel.value = 'risk-desc';
         sortSel.dispatchEvent(new Event('change'));
         const descScore = doc.querySelector('#alerts-queue-tbody tr:first-child td:nth-child(5)').textContent;
-        if (ascScore.includes('35') && descScore.includes('96')) {
-          record('PASS', '5. Threat Alerts Queue', 'Risk Score Sorting', 'Ascending sorted to 35, descending sorted to 96');
+        if (defaultScore.includes('96') && ascScore.includes('35') && descScore.includes('96')) {
+          record('PASS', '5. Threat Alerts Queue', 'Risk Score Sorting', 'Default high-to-low (96) and asc sorting (35) verified');
         } else {
           record('FAIL', '5. Threat Alerts Queue', 'Risk Score Sorting', 'Sorting did not order rows correctly');
         }
@@ -414,6 +436,35 @@
         // SUITE 8: Reports (Page 7)
         doc.querySelector('.nav-item[data-nav="reports"]').click();
         await sleep(200);
+
+        // Check 1: Security Overview Cards
+        const repTot = doc.getElementById('rep-overview-total');
+        const repCrit = doc.getElementById('rep-overview-critical');
+        const repRate = doc.getElementById('rep-overview-rate');
+        if (repTot && repTot.textContent.trim() === '10' && repCrit && repCrit.textContent.trim() === '3' && repRate && repRate.textContent.trim() === '82.4%') {
+          record('PASS', '8. Reports', 'Security Overview Cards', 'Total: 10, Critical: 3, Detection Rate: 82.4% populated accurately');
+        } else {
+          record('FAIL', '8. Reports', 'Security Overview Cards', 'Security overview cards missing or mismatch');
+        }
+
+        // Check 2: Donut Chart & SVG Segments
+        const donutCrit = doc.getElementById('rep-donut-crit');
+        const repDonutTotal = doc.getElementById('rep-donut-total-num');
+        if (donutCrit && repDonutTotal && repDonutTotal.textContent.trim() === '10') {
+          record('PASS', '8. Reports', 'Threat Severity Donut', 'SVG Donut chart rendered with 4 severity segments and 10 total alerts');
+        } else {
+          record('FAIL', '8. Reports', 'Threat Severity Donut', 'Donut chart segments or total missing');
+        }
+
+        // Check 3: Detection Trends & Model Evaluation Rings
+        const trendWrap = doc.querySelector('.rep-trend-chart-wrap');
+        const evalRings = doc.querySelectorAll('.eval-ring-svg');
+        const catBars = doc.querySelectorAll('.cat-bar-item');
+        if (trendWrap && evalRings.length >= 4 && catBars.length >= 5) {
+          record('PASS', '8. Reports', 'Visual Trends & AI Evaluation', 'Detection trend area chart, 4 circular metric rings, and 5 category bars rendered');
+        } else {
+          record('FAIL', '8. Reports', 'Visual Trends & AI Evaluation', 'Visual charts or evaluation elements missing');
+        }
 
         const auditSearch = doc.getElementById('input-audit-search');
         auditSearch.value = 'SQLi';
@@ -551,6 +602,7 @@
         record('FAIL', 'Runtime Execution', 'Unexpected Exception', err.message);
         banner.className = 'summary-badge badge-failed';
         banner.textContent = 'AUDIT RUNTIME ERROR';
+        jsonOutput.textContent = JSON.stringify({ passed: results.filter(r => r.status === 'PASS').length, failed: results.filter(r => r.status === 'FAIL').length, results }, null, 2);
       }
     };
   </script>
